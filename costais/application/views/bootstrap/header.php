@@ -27,11 +27,11 @@ if (@array_key_exists($this->uri->segment(2), $menu_items)) {
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>My Magazines | <?php html_escape($menu_items[$menu_current]['label']); ?></title>
+        <title>Costais | Manage Your Money</title>
         <meta name="description" content="<?php html_escape($menu_items[$menu_current]['desc']); ?>">
         <meta name="viewport" content="width=device-width">
 
-        <link rel="stylesheet" href="/magazine/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
         <style>
             body {
                 padding-top: 60px;
@@ -49,15 +49,12 @@ if (@array_key_exists($this->uri->segment(2), $menu_items)) {
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="brand" href="/">Magazine Collection</a>
+                    <a class="brand" href="/index.php">Costais</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
-                          <?php
-                            foreach ($menu_items as $item => $item_data) {
-                              echo '<li' . ($item == $menu_current ? ' class="active"' : '') . '>';
-                              echo '<a href="magazine/index.php/magazine/' . $item . '" title="' . $item_data['desc'] . '">' . $item_data['label'] . '</a>';
-                              echo '</li>';
-                            }
+                          <?php 
+                          	echo '<li><a href="index.php/login">Login</a></li>';
+                          	echo '<li><a href="index.php/Register">Register</a></li>';
                           ?>
                         </ul>
                     </div><!--/.nav-collapse -->

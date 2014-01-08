@@ -1,12 +1,45 @@
+/*	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	
+ * 					Landing Page
+ =	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	*/
 
+.container {
+	margin: 0 auto;
+	text-align: center;
+	width: 1000px;
+}
 
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
+#first {
+	margin: 0 0 20px 0;
+}
 
+#second {
+	margin: 0 0 40px 0;
+}
 
+#second h2 {
+	text-align: left;
+}
 
+/* these are backwards */
+.left {
+	width: 450px;
+	text-align: left;
+	float: right;
+	margin: 0 40px 0 0;
+}
 
+.right {
+	width: 450px;
+	text-align: left;
+}
+
+#third {
+	margin: 0 0 40px 0;
+}
+
+#third h2{
+	text-align: left;
+}
 
 
 
