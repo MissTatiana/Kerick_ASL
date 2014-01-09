@@ -54,7 +54,7 @@ if (@array_key_exists($this->uri->segment(2), $menu_items)) {
                         <ul class="nav">
                           <?php 
                           	echo '<li><a href="index.php/login">Login</a></li>';
-                          	echo '<li><a href="index.php/Register">Register</a></li>';
+                          	echo '<li><a href="index.php/register">Register</a></li>';
                           ?>
                         </ul>
                     </div><!--/.nav-collapse -->

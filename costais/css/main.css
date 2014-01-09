@@ -34,14 +34,34 @@
 }
 
 #third {
-	margin: 0 0 40px 0;
+	margin: 0 0 70px 0;
 }
 
 #third h2{
 	text-align: left;
 }
 
+#form {
+	float: left;
+	width: 600px;
+}
 
+#user_first, #user_email ,#user_pass {
+	float: left;
+	margin: 0 20px 0 0;
+}
+
+#landing_reg {
+	margin: 20px 0 0 400px;
+}
+
+#benifits {
+	margin: 50px 0 0 0;
+}
+
+footer {
+	clear: left;
+}
 
 
 

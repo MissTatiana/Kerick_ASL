@@ -1,7 +1,9 @@
+
 <hr>
 
             <footer>
-                <p>&copy; lynda.com 2013</p>
+            	<p>Advanded Server-side Languages</p>
+                <p>&copy; Tatiana Kerick 2014</p>
             </footer>
 
         </div> <!-- /container -->

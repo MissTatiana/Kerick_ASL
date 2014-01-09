@@ -30,31 +30,51 @@
 	
 	<h2>Sign Up!</h2>
 	
+	<div id="form">
 	<?php echo form_open(); ?>
-		<div>
+		<div id="user_first">
 			<?php echo form_label('First name:', 'user_first'); ?>
 			<?php echo form_input('user_first', set_value('user_first')); ?>
+		</div>
 		
+		<div>
 			<?php echo form_label('Last name:', 'user_last'); ?>
 			<?php echo form_input('user_last', set_value('user_last')); ?>
 		</div>
 		
-		<div>
+		<div id="user_email">
 			<?php echo form_label('Email Address:', 'user_email'); ?>
 			<?php echo form_input('user_email', set_value('user_email')); ?>
 		</div>
 		
 		<div>
+			<?php echo form_label('Confirm Email:', 'conf_email'); ?>
+			<?php echo form_input('conf_email', set_value('conf_email')); ?>
+		</div>
+		
+		<div id="user_pass">
 			<?php echo form_label('Password:', 'user_pass'); ?>
 			<?php echo form_input('user_pass', set_value('user_pass')); ?>
-			
+		</div>
+		
+		<div>	
 			<?php echo form_label('Confirm Password:', 'conf_pass'); ?>
 			<?php echo form_input('conf_pass', set_value('conf_pass')); ?>
 		</div>
 		
-		<div>
+		<div id="landing_reg">
 			<?php echo form_submit('addUser', 'Register'); ?>
 		</div>
 	<?php echo form_close(); ?>
+	</div> <!-- form -->
+	
+	<div id="benifits">
+		<ul>
+			<li><h4>Benifit one</h4></li>
+			<li><h4>Benifit two</h4></li>
+			<li><h4>The most important benifit</h4></li>
+			<li><h4>Benifit four</h4></li>
+		</ul>
+	</div>
 	
 </div>
