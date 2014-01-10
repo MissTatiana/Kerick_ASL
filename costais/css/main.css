@@ -69,6 +69,10 @@ footer {
  * 					Register Page
  =	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	*/
 
+#reg_form, #login_form {
+	text-align: center;
+}
+
 
 
 
