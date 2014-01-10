@@ -25,6 +25,14 @@ class Welcome extends CI_Controller {
 		$this->load->view('landing');
 		$this->load->view('bootstrap/footer');
 	}
+	
+	public function register() {
+		$this->load->help('form');
+		
+		$this->load->view('bootstrap/header');
+		$this->load->view('register');
+		$this->load->view('bootstrap/footer');
+	}
 }
 
 /* End of file welcome.php */

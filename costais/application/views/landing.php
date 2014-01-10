@@ -32,7 +32,7 @@
 	
 	<div id="form">
 	<?php echo form_open(); ?>
-		<div id="user_first">
+		<div class="user_first">
 			<?php echo form_label('First name:', 'user_first'); ?>
 			<?php echo form_input('user_first', set_value('user_first')); ?>
 		</div>
@@ -42,7 +42,7 @@
 			<?php echo form_input('user_last', set_value('user_last')); ?>
 		</div>
 		
-		<div id="user_email">
+		<div class="user_email">
 			<?php echo form_label('Email Address:', 'user_email'); ?>
 			<?php echo form_input('user_email', set_value('user_email')); ?>
 		</div>
@@ -52,7 +52,7 @@
 			<?php echo form_input('conf_email', set_value('conf_email')); ?>
 		</div>
 		
-		<div id="user_pass">
+		<div class="user_pass">
 			<?php echo form_label('Password:', 'user_pass'); ?>
 			<?php echo form_input('user_pass', set_value('user_pass')); ?>
 		</div>

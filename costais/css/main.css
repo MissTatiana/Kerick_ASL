@@ -46,7 +46,7 @@
 	width: 600px;
 }
 
-#user_first, #user_email ,#user_pass {
+.user_first, .user_email, .user_pass {
 	float: left;
 	margin: 0 20px 0 0;
 }
@@ -65,7 +65,9 @@ footer {
 
 
 
-
+/*	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	
+ * 					Register Page
+ =	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	*/
 
 
 

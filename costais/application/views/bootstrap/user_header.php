@@ -3,17 +3,13 @@
 $menu_item_default = 'index';
 $menu_items = array(
   'index' => array(
-    'label' => 'Costais',
+    'label' => 'Home',
     'desc' => 'A list of all my magazines',
   ),
-  'login' => array(
-    'label' => 'Login',
-    'desc' => 'Login to your account',
+  'add' => array(
+    'label' => 'Add',
+    'desc' => 'Add a magazine to my collection',
   ),
-  'register' => array(
-  	'label' => 'Register',
-  	'desc' => 'Create an account with us',
-  )
 );
 
 // Determine the current menu item.
@@ -53,15 +49,11 @@ if (@array_key_exists($this->uri->segment(2), $menu_items)) {
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    
+                    <a class="brand" href="/index.php">Costais</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
                           <?php 
-                          	foreach($menu_items as $item => $item_data) {
-                          		echo '<li' . ($item == $menu_current ? ' class="active"' : '') . '>';
-                          		echo '<a href="index.php/' . $item . '"title="' . $item_data['desc'] . '">' . $item_data['label'] . '</a>';
-								echo '</li>';
-                          	}
+                          	echo '<li><a href="index.php/register">Add Transaction</a></li>';
                           ?>
                         </ul>
                     </div><!--/.nav-collapse -->
