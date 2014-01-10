@@ -59,7 +59,7 @@ if (@array_key_exists($this->uri->segment(2), $menu_items)) {
                           <?php 
                           	foreach($menu_items as $item => $item_data) {
                           		echo '<li' . ($item == $menu_current ? ' class="active"' : '') . '>';
-                          		echo '<a href="index.php/' . $item . '"title="' . $item_data['desc'] . '">' . $item_data['label'] . '</a>';
+                          		echo '<a href="index.php/welcome/' . $item . '"title="' . $item_data['desc'] . '">' . $item_data['label'] . '</a>';
 								echo '</li>';
                           	}
                           ?>
