@@ -1,8 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Costais extends CI_Controller {
+	/*
+	 *Controlls aspects of site before user log in
+	 * managed registering and logging in 
+	 */
 	
-	//Indes for costais controller
+	//Index for costais controller
 	public function index() {
 		$this->load->helper('form');
 		
