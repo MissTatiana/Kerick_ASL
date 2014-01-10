@@ -28,5 +28,9 @@ class Costais extends CI_Controller {
 		$this->load->view('login');
 		$this->load->view('bootstrap/footer');
 	}
+	
+	public function user($user_id) {
+		
+	}
 
 }//end class
