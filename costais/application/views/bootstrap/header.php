@@ -35,7 +35,7 @@ if (@array_key_exists($this->uri->segment(2), $menu_items)) {
         <meta name="description" content="<?php html_escape($menu_items[$menu_current]['desc']); ?>">
         <meta name="viewport" content="width=device-width">
 
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/bootstrap.css">
         <style>
             body {
                 padding-top: 60px;

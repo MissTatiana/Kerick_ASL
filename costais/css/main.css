@@ -1,3 +1,8 @@
+/*green color: #52a672;
+
+red color: #a65252;*/
+
+
 /*	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	
  * 					Landing Page
  =	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	*/
@@ -66,7 +71,7 @@ footer {
 
 
 /*	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	
- * 					Register Page
+ * 					Register/Login
  =	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	*/
 
 #reg_form, #login_form {
@@ -74,8 +79,7 @@ footer {
 }
 
 
-
-
-
-
+/*	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	
+ * 					User_home
+ =	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	*/
 

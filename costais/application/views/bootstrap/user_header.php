@@ -3,13 +3,21 @@
 $menu_item_default = 'index';
 $menu_items = array(
   'index' => array(
-    'label' => 'Home',
-    'desc' => 'A list of all my magazines',
+    'label' => 'Costais',
+    'desc' => 'Back to your page',
   ),
-  'add' => array(
-    'label' => 'Add',
-    'desc' => 'Add a magazine to my collection',
+  'categories' => array(
+  	'label' => 'Categories',
+  	'desc' => 'View and edit your categories',
   ),
+  'addExpense' => array(
+    'label' => 'Add Expense',
+    'desc' => 'Add an expense',
+  ),
+  'addIncome' => array (
+  	'label' => 'Add Income',
+  	'desc' => 'Add income'
+  )
 );
 
 // Determine the current menu item.
@@ -31,7 +39,7 @@ if (@array_key_exists($this->uri->segment(2), $menu_items)) {
         <meta name="description" content="<?php html_escape($menu_items[$menu_current]['desc']); ?>">
         <meta name="viewport" content="width=device-width">
 
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/bootstrap.css">
         <style>
             body {
                 padding-top: 60px;
@@ -49,11 +57,14 @@ if (@array_key_exists($this->uri->segment(2), $menu_items)) {
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="brand" href="/index.php">Costais</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
                           <?php 
-                          	echo '<li><a href="index.php/register">Add Transaction</a></li>';
+                          	foreach($menu_items as $item => $item_data) {
+                          		echo '<li' . ($item == $menu_current ? ' class="active"' : '') . '>';
+								echo '<a href="index.php/user/' . $item . '"title="' . $item_data['desc'] . '">' . $item_data['label'] . '</a>';
+								echo '</li>';
+                          	}
                           ?>
                         </ul>
                     </div><!--/.nav-collapse -->

@@ -4,6 +4,13 @@ class User extends CI_Controller {
 /*
  * Controlls aspect after the user as logged in/registers
  */
+ 
+ //Index for costais controller
+	public function index() {		
+		$this->load->view('bootstrap/user_header');
+		$this->load->view('user/user_home');
+		$this->load->view('bootstrap/footer');
+	}
 	
 }//end class
 	
