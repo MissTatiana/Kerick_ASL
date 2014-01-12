@@ -13,6 +13,8 @@ class User extends CI_Controller {
 	}
 	
 	public function addExpense() {
+		$this->load->helper('form');
+		
 		$this->load->view('bootstrap/user_header');
 		$this->load->view('user/add_expense');
 		$this->load->view('bootstrap/footer');

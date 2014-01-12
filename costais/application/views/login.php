@@ -11,7 +11,7 @@
 		
 		<div>
 			<?php echo form_label('Password:', 'log_pass'); ?>
-			<?php echo form_input('log_pass', set_value('log_pass')); ?>
+			<?php echo form_password('log_pass', set_value('log_pass')); ?>
 		</div>
 		
 		<div>

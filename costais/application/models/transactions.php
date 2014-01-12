@@ -10,6 +10,9 @@ class Transactions extends My_Model {
 	//User's id for transactions specific to them - int
 	public $user_id;
 	
+	//Transaction type (expense/income) - string
+	public $trans_type;
+	
 	//Transactions date - date
 	public $trans_date;
 	

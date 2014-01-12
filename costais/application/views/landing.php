@@ -54,12 +54,12 @@
 		
 		<div class="user_pass">
 			<?php echo form_label('Password:', 'user_pass'); ?>
-			<?php echo form_input('user_pass', set_value('user_pass')); ?>
+			<?php echo form_password('user_pass', set_value('user_pass')); ?>
 		</div>
 		
 		<div>	
 			<?php echo form_label('Confirm Password:', 'conf_pass'); ?>
-			<?php echo form_input('conf_pass', set_value('conf_pass')); ?>
+			<?php echo form_password('conf_pass', set_value('conf_pass')); ?>
 		</div>
 		
 		<div id="landing_reg">
