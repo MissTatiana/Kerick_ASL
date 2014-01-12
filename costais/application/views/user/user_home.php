@@ -24,36 +24,49 @@
 			<p class="tinyred">00.00</p>
 		</div><!-- top3 -->
 		
+		<div id="totalBar">
+			
+		</div><!-- hr -->
+		
+		<div id="total">
+			<p class="em">Spending Total:</p>
+			<p class="blue">000.00</p>
+		</div>
+		
 	</div><!-- spending -->
 	
 </div><!-- userLeft -->
 
 
 <div id="userRight">
-	<h4>Transactions</h4>
+	<h4>Transactions:</h4>
 	
-	<div id="trans" class="odd">
-		<div id="transLeft">
-			<p class="em">Category</p>
-			<p class="note">Note</p>
-		</div><!-- transLeft -->
+	<div id="transactions">
 		
-		<div id="transRight">
-			<p>January 2, 2014</p>
-			<p>$00.00</p>
-		</div><!-- transRight -->
-	</div><!-- trans -->
-	
-	<div id="trans2" class="even">
-		<div id="transLeft2">
-			<p class="em">Category</p>
-			<p class="note">Note</p>
-		</div><!-- transLeft -->
+		<div id="trans" class="odd">
+			<div id="transLeft">
+				<p class="note">Note</p>
+				<p>January 2, 2014</p>
+			</div><!-- transLeft -->
+			
+			<div id="transRight">
+				<p class="category">Category</p>
+				<p>$00.00</p>
+			</div><!-- transRight -->
+		</div><!-- trans -->
 		
-		<div id="transRight2">
-			<p>January 2, 2014</p>
-			<p>$00.00</p>
-		</div><!-- transRight -->
-	</div><!-- trans -->	
+		<div id="trans2" class="even">
+			<div id="transLeft2">
+				<p class="note">Note</p>
+				<p>January 2, 2014</p>
+			</div><!-- transLeft -->
+			
+			<div id="transRight2">
+				<p class="category">Category</p>
+				<p>$00.00</p>
+			</div><!-- transRight -->
+		</div><!-- trans -->	
+		
+	</div><!-- transactions -->
 	
 </div><!-- userRight -->

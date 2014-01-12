@@ -12,5 +12,11 @@ class User extends CI_Controller {
 		$this->load->view('bootstrap/footer');
 	}
 	
+	public function addExpense() {
+		$this->load->view('bootstrap/user_header');
+		$this->load->view('user/add_expense');
+		$this->load->view('bootstrap/footer');
+	}
+	
 }//end class
 	
