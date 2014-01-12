@@ -1103,10 +1103,13 @@ input[type="color"],
           border-radius: 4px;
 }
 
-input,
+input {
+ width: 206px;	
+}
+
 textarea,
 .uneditable-input {
-  width: 206px;
+  width: 250px;
 }
 
 textarea {

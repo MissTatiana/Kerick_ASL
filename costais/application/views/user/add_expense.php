@@ -1,49 +1,90 @@
+<h2>Add Expense</h2>
+
 <div id="add_expense">
-	<h2>Add Expense</h2>
 	
 	<?php echo form_open(); ?>
 	
 		<!-- how should I go about getting in the user id in? -->
 		<!-- user id -->
 		<div>
-			<?php echo form_label('User Id:', 'user_id'); ?>
-			<?php echo form_input('user_id', set_value('user_id')); ?>
+			<?php echo form_hidden('user_id', set_value('user_id')); ?>
 		</div>
 		
 		<!-- will need if to determing the value to send in for the trans_type -->
 		<!-- Type -->
 		<div>
-			<!-- probably will need to be hidden -->
-			<?php echo form_label('Type:', 'trans_type'); ?>
-			<?php echo form_input('trans_type', set_value('trans_type')); ?>
+		<!-- probably will need to be hidden -->
+		<?php 
+			$typeData = array(
+				'name' => 'trans_type',
+				'id' => 'trans_type',
+				'value' => 'expense',
+			);
+			echo form_input($typeData);
+		?>	
 		</div>	
 		
 		<!-- Date -->
 		<div>
-			<?php echo form_label('Date:', 'trans_date'); ?>
-			<?php echo form_input('trans_date', set_value('trans_date')); ?>
+		<!-- this needs to be a date select -->
+		<?php 
+			$dateData = array(
+				'name' => 'trans_date',
+				'id' => 'trans_date',
+			);
+			echo form_label('Date:', 'trans_date');
+			echo form_input($dateData);
+		?>
 		</div>
 		
 		<!-- Amount -->
 		<div>
-			<?php echo form_label('Amount:', 'trans_amount'); ?>
-			<?php echo form_input('trans_amount', set_value('trans_amount')); ?>
+		<?php 
+			$amountData = array(
+				'name' => 'trans_amount',
+				'id' => 'trans_amount',
+			);
+			echo form_label('Amount:', 'trans_amount');
+			echo form_input($amountData);
+		?>
 		</div>
 		
 		<!-- Category -->
 		<div>
-			<?php echo form_label('Category:', 'trans_category'); ?>
-			<?php echo form_input('trans_category', set_value('trans_category')); ?>
+		<!-- this needs to be a dropdown populated from db -->
+		<?php 
+			$catData = array(
+				'name' => 'trans_category',
+				'id' => 'trans_category',
+			);
+			echo form_label('Category:', 'trans_category');
+			echo form_input($catData);
+		?>
 		</div>
 		
 		<!-- Note -->
 		<div>
-			<?php echo form_label('Note:', 'trans_note'); ?>
-			<?php echo form_textarea('trans_note', set_value('trans_note')); ?>
+		<?php 
+			$noteData = array (
+			  'name' => 'trans_note',
+              'id' => 'trans_note',
+              'rows' => '8',
+              'cols' => '10',
+			);
+			echo form_label('Note:', 'trans_note');
+			echo form_textarea($noteData);
+		?>
 		</div>	
 		
 		<div>
-			<?php echo form_submit('addExpense', 'Add'); ?>
+		<?php 
+			$addExpData = array(
+				'name' => 'expSub',
+				'id' => 'expSub',
+				'value' => 'Add Expense'
+			);
+			echo form_submit($addExpData);
+		?>
 		</div>
 		
 	<?php echo form_close(); ?>

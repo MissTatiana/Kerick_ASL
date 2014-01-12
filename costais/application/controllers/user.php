@@ -20,5 +20,13 @@ class User extends CI_Controller {
 		$this->load->view('bootstrap/footer');
 	}
 	
+	public function addIncome() {
+		$this->load->helper('form');
+		
+		$this->load->view('bootstrap/user_header');
+		$this->load->view('user/add_income');
+		$this->load->view('bootstrap/footer');
+	}
+	
 }//end class
 	
