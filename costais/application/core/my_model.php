@@ -71,6 +71,24 @@ class My_Model extends CI_Model {
 		} 
 		return $ret_val;
 	 }//end get
+	 
+	 public function login($email, $password) {
+	 	$this->db->select('user_id, user_email, user_pass');
+		$this->db->from('users');
+		$this->db->where('user_email', $email);
+		$this->db->where('user_pass', md5($password));
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() == 1) {
+			return $query->result();
+		}
+		else {
+			return false;
+		}
+		
+	 }//end login
 	
 }//end class
 
