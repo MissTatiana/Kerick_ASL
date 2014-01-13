@@ -29,17 +29,17 @@ class Costais extends CI_Controller {
 			array(
 				'field' => 'user_first',
 				'label' => 'First Name',
-				'rules' => ('trim|required|max_length[150]|xss_clean'),
+				'rules' => ('trim|required|max_length[150]'),
 			),
 			array(
 				'field' => 'user_last',
 				'label' => 'Last Name',
-				'rules' => ('trim|required|max_length[150]|xss_clean'),
+				'rules' => ('trim|required|max_length[150]'),
 			),
 			array(
 				'field' => 'user_email',
 				'label' => 'Email Address',
-				'rules' => ('required|valid_email|matches[conf_email]|is_unique[users.email]'),
+				'rules' => ('trim|required|valid_email|matches[conf_email]|is_unique[users.user_email]'),
 			),
 			array(
 				'field' => 'conf_email',
@@ -49,7 +49,7 @@ class Costais extends CI_Controller {
 			array(
 				'field' => 'user_pass',
 				'label' => 'Password',
-				'rules' => 'trim|required|matches[passconf]|md5',
+				'rules' => 'trim|required|matches[conf_pass]|md5',
 			),
 			array(
 				'field' => 'conf_pass',
@@ -58,11 +58,26 @@ class Costais extends CI_Controller {
 			),
 		));
 		
-		$this->form_validation->set_error_delimiter('<div class="alert alert-success"', '</div>');
+		$this->form_validation->set_error_delimiters('<div class="alert alert-success"', '</div>');
+		if($this->form_validation->run() == FALSE) {
+			$this->load->view('register');
+		}
+		else {
+			$this->load->model('User');
+			$user = new User();
+			
+			$user->user_first = $this->input->post('user_first');
+			$user->user_last = $this->input->post('user_last');
+			$user->user_email = $this->input->post('user_email');
+			$user->user_pass = $this->input->post('user_pass');
+			
+			$user->save();
+			$this->load->view('success');
+			
+		}
 		
 		
-		
-		$this->load->view('register');
+		//$this->load->view('register');
 		$this->load->view('bootstrap/footer');
 	}
 	
@@ -73,10 +88,6 @@ class Costais extends CI_Controller {
 		$this->load->view('bootstrap/header');
 		$this->load->view('login');
 		$this->load->view('bootstrap/footer');
-	}
-	
-	public function user($user_id) {
-		
 	}
 
 }//end class
