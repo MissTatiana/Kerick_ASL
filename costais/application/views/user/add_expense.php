@@ -7,7 +7,14 @@
 		<!-- how should I go about getting in the user id in? -->
 		<!-- user id -->
 		<div>
-			<?php echo form_hidden('user_id', set_value('user_id')); ?>
+		<?php
+			$user_id = array(
+				'name' => 'user_id',
+				'id' => 'user_id',
+				//'value' => user_id,
+			);
+			echo form_hidden($user_id);
+		?>
 		</div>
 		
 		<!-- will need if to determing the value to send in for the trans_type -->

@@ -175,10 +175,13 @@ footer {
  * 					Add expense/income
  =	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	*/
 
-#add_expense {
+#add_expense, #add_income {
 	margin: 10px 0 0 30px;
 }
 
+#expSub, #incSub {
+	margin: 5px 0 0 175px;
+}
 
 
 
