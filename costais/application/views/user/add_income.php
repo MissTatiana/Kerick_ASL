@@ -85,12 +85,12 @@
 		
 		<div>
 		<?php 
-			$addExpData = array(
+			$addIncData = array(
 				'name' => 'incSub',
 				'id' => 'incSub',
 				'value' => 'Add Income'
 			);
-			echo form_submit($addExpData);
+			echo form_submit($addIncData);
 		?>
 		</div>
 		
