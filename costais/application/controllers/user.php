@@ -36,5 +36,11 @@ class User extends CI_Controller {
 		$this->load->view('bootstrap/footer');
 	}
 	
+	public function logout() {
+		$this->session->unset_userdata('logged_in');
+		session_destroy();
+		redirect('/costais/', 'refresh');
+	}
+	
 }//end class
 	

@@ -73,7 +73,7 @@ class My_Model extends CI_Model {
 	 }//end get
 	 
 	 public function login($email, $password) {
-	 	$this->db->select('user_id, user_email, user_pass');
+	 	$this->db->select('user_id, user_email, user_first');
 		$this->db->from('users');
 		$this->db->where('user_email', $email);
 		$this->db->where('user_pass', md5($password));
