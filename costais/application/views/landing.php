@@ -32,40 +32,86 @@
 	
 	<div id="form">
 	<?php echo form_open(); ?>
-		<div class="user_first">
-			<?php echo form_label('First name:', 'user_first'); ?>
-			<?php echo form_input('user_first', set_value('user_first')); ?>
+		
+		<!-- First name -->
+		<div id="firstName">
+		<?php 
+			$firstData = array(
+				'name' => 'user_first',
+				'id' => 'user_first',
+			);
+			echo form_label('First name:', 'user_first');
+			echo form_input($firstData);
+		?>
+		</div>
+		
+		<!-- last name -->
+		<div>
+		<?php
+			$lastData = array(
+				'name' => 'user_last',
+				'id' => 'user_last',
+			); 
+			echo form_label('Last name:', 'user_last');
+			echo form_input($lastData); 
+		?>
+		</div>
+		
+		<div id="email">
+		<?php
+			$emailData = array(
+				'name' => 'user_email',
+				'id' => 'user_email',
+			);
+			echo form_label('Email Address:', 'user_email');
+			echo form_input($emailData); 
+		?>
 		</div>
 		
 		<div>
-			<?php echo form_label('Last name:', 'user_last'); ?>
-			<?php echo form_input('user_last', set_value('user_last')); ?>
+		<?php 
+			$emailConfData = array(
+				'name' => 'conf_email',
+				'id' => 'conf_email',
+			);
+			echo form_label('Confirm Email:', 'conf_email');
+			echo form_input($emailConfData); 
+		?>
 		</div>
 		
-		<div class="user_email">
-			<?php echo form_label('Email Address:', 'user_email'); ?>
-			<?php echo form_input('user_email', set_value('user_email')); ?>
-		</div>
-		
-		<div>
-			<?php echo form_label('Confirm Email:', 'conf_email'); ?>
-			<?php echo form_input('conf_email', set_value('conf_email')); ?>
-		</div>
-		
-		<div class="user_pass">
-			<?php echo form_label('Password:', 'user_pass'); ?>
-			<?php echo form_password('user_pass', set_value('user_pass')); ?>
+		<div id="password">
+		<?php 
+			$passwordData = array(
+				'name' => 'user_pass',
+				'id' => 'user_pass',
+			);
+			echo form_label('Password:', 'user_pass');
+			echo form_password($passwordData); 
+		?>
 		</div>
 		
 		<div>	
-			<?php echo form_label('Confirm Password:', 'conf_pass'); ?>
-			<?php echo form_password('conf_pass', set_value('conf_pass')); ?>
+		<?php 
+			$passwordConfData = array(
+				'name' => 'conf_pass',
+				'id' => 'conf_pass',
+			);
+			echo form_label('Confirm Password:', 'conf_pass');
+			echo form_password($passwordConfData); 
+		?>
 		</div>
 		
-		<div id="landing_reg">
-			<?php echo form_submit('addUser', 'Register'); ?>
+		<div>
+		<?php 
+			$regData = array(
+				'name' => 'regSub',
+				'id' => 'regSub',
+				'value' => 'Register',
+			);
+			echo form_submit($regData); 
+		?>
 		</div>
-	<?php echo form_close(); ?>
+		<?php echo form_close(); ?>
 	</div> <!-- form -->
 	
 	<div id="benifits">
