@@ -29,10 +29,26 @@ class User extends CI_Controller {
 	}
 	
 	public function categories() {
+		//load form help for add category
 		$this->load->helper('form');
 		
+		//load url helped for edit/delete
+		$this->load->helper('url');
+		
+		//load header
 		$this->load->view('bootstrap/user_header');
+		
+		$this->load->library('table');
+		$this->load->model('Categories');
+		$categories = $this->Categories->get();
+		foreach($categories as $category) {
+			//still working on trying to display the categories
+		}
+		
+		//load the view
 		$this->load->view('user/categories');
+		
+		//load footer
 		$this->load->view('bootstrap/footer');
 	}
 	

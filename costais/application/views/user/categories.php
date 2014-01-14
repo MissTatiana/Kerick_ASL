@@ -1,6 +1,6 @@
 <h2>Categories</h2>
-
 <div id="addCategory">
+	<?php echo validation_errors(); ?>
 	<?php 
 		form_open();
 		

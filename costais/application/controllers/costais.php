@@ -129,6 +129,7 @@ class Costais extends CI_Controller {
 	         			'email' => $row->user_email,
 	         			'first' => $row->user_first,
 	      			);
+					//probably need to pass in an array when loading vreify view
 					$this->session->set_userdata('logged in', $sess_array);
 				}
 				return TRUE;
