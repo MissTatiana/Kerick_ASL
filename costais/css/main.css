@@ -189,7 +189,7 @@ footer {
 }
 
 #addCategory {
-	margin: 0 0 0 250px;
+	margin: 0 0 0 5px;
 }
 
 #addCategory label {
@@ -210,5 +210,17 @@ footer {
 	margin: 2px 0 0 0;
 }
 
+#categories {
+	margin: 0 0 0 5px;
+}
+
+th {
+	text-align: left;
+	font-size: 16px;
+}
+
+td {
+	width: 150px;
+}
 
 

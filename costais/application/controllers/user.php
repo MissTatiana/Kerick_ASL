@@ -39,14 +39,22 @@ class User extends CI_Controller {
 		$this->load->view('bootstrap/user_header');
 		
 		$this->load->library('table');
-		$this->load->model('Categories');
-		$categories = $this->Categories->get();
+		$cats = array();
+		
+		$this->load->model('Category');
+		$categories = $this->Category->get();
 		foreach($categories as $category) {
-			//still working on trying to display the categories
+			$cats[] = array(
+				$category->category_name,
+				anchor('user/category/edit/' . $category->category_id, 'Edit') . ' | ' .
+				anchor('user/category/delete' . $category->category_id, 'Delete'),
+			);
 		}
 		
 		//load the view
-		$this->load->view('user/categories');
+		$this->load->view('user/categories', array(
+			'cats' => $cats,
+		));
 		
 		//load footer
 		$this->load->view('bootstrap/footer');
