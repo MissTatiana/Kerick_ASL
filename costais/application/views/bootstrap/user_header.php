@@ -14,10 +14,14 @@ $menu_items = array(
     'label' => 'Add Expense',
     'desc' => 'Add an expense',
   ),
-  'addIncome' => array (
+  'addIncome' => array(
   	'label' => 'Add Income',
   	'desc' => 'Add income'
-  )
+  ),
+  'logout' => array(
+  	'label' => 'Logout',
+  	'desc' => 'Log out of your account',
+  ),
 );
 
 // Determine the current menu item.
