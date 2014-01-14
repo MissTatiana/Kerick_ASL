@@ -12,6 +12,10 @@ class User extends CI_Controller {
 		$this->load->view('bootstrap/footer');
 	}
 	
+/*	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	
+ * 			Expense
+ =	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	*/		
+	
 	public function addExpense() {
 		$this->load->helper('form');
 		
@@ -27,6 +31,10 @@ class User extends CI_Controller {
 		$this->load->view('user/add_income');
 		$this->load->view('bootstrap/footer');
 	}
+	
+/*	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	
+ * 			Category CRUD
+ =	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	*/	
 	
 	public function categories() {
 		//load form help for add category

@@ -11,7 +11,7 @@
 			$user_id = array(
 				'name' => 'user_id',
 				'id' => 'user_id',
-				//'value' => user_id,
+				'value' => 15,
 			);
 			echo form_hidden($user_id);
 		?>
@@ -25,7 +25,7 @@
 			$typeData = array(
 				'name' => 'trans_type',
 				'id' => 'trans_type',
-				'value' => 'income',
+				'value' => '1',
 			);
 			echo form_input($typeData);
 		?>	
