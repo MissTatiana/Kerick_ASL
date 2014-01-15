@@ -184,8 +184,8 @@ footer {
 	margin: 10px 0 0 30px;
 }
 
-#expSub, #incSub {
-	margin: 5px 0 0 175px;
+#expReset, #incReset {
+	margin: 0 0 0 100px;
 }
 
 /*	=	=	=	=	Add/Edit Category	=	=	=	=	*/
@@ -194,22 +194,20 @@ footer {
 	margin: 0 0 0 5px;
 }
 
-#addCategory label, #editCategory label {
+#cat_name label, #cat_type label,{
 	font-size: 16px;
 	font-weight: bold;
-	float: left;
 	width: 130px;
 }
 
-#category_name, #edit_categeory_name {
+#cat_name, #category_type {
 	width: 150px;
 	height: 15px;
-	float: left;
 	margin: 0 10px 0 0;
 }
 
-#catSub, #editSub {
-	margin: 2px 0 0 0;
+#catSub {
+	margin: 2px 0 0 120px;
 }
 
 .categories {

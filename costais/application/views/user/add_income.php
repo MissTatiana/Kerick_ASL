@@ -85,6 +85,13 @@
 		
 		<div>
 		<?php 
+			$incReset = array(
+				'name' => 'incReset',
+				'id' => 'incReset',
+				'value' => 'Reset',
+			);
+			echo form_reset($incReset); 
+			
 			$addIncData = array(
 				'name' => 'incSub',
 				'id' => 'incSub',

@@ -11,6 +11,15 @@
 			echo form_label('Category:', 'category_name');
 			echo form_input($categoryData);
 			
+			$options = array(
+                  0 => 'Expense',
+                  1 => 'Income',
+                );
+			echo form_label('Type:', 'category_type');
+			echo form_dropdown('category_type', $options, 0);
+			
+			echo '<br />';
+			
 			$catSubData = array(
 				'name' => 'catSub',
 				'id' => 'catSub',
@@ -25,7 +34,7 @@
 
 <div class="categories">
 	<?php 
-		$this->table->set_heading('Category', 'Action');
+		$this->table->set_heading('Category', 'Type', 'Action');
 		echo $this->table->generate($cats);
 	?>
 </div><!-- categories -->

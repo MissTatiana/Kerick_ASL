@@ -10,6 +10,9 @@ class Category extends My_Model {
 	//Category name - string
 	public $category_name;
 	
+	//Category type - int
+	public $category_type;
+	
 }//end class
 
 ?>

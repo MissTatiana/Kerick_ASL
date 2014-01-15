@@ -13,23 +13,11 @@
 				'id' => 'user_id',
 				'value' => 15,
 			);
-			echo form_hidden($user_id);
+			echo form_input($user_id);
 		?>
 		</div>
 		
 		<!-- will need if to determing the value to send in for the trans_type -->
-		<!-- Type -->
-		<div>
-		<!-- probably will need to be hidden -->
-		<?php 
-			$typeData = array(
-				'name' => 'trans_type',
-				'id' => 'trans_type',
-				'value' => '0',
-			);
-			echo form_hidden($typeData);
-		?>	
-		</div>	
 		
 		<!-- Date -->
 		<div>
@@ -60,8 +48,8 @@
 		<div>
 		<!-- this needs to be a dropdown populated from db -->
 		<?php 
-			echo form_label('Category:', 'trans_category');
-			echo form_dropdown('category_id', $category_form_options, set_value('category_id'));
+			echo form_label('Category:', 'category_id');
+			echo form_dropdown('category_id', $category_form_options, set_value('category_name'));
 		?>
 		</div>
 		
@@ -81,6 +69,13 @@
 		
 		<div>
 		<?php 
+			$expReset = array(
+				'name' => 'expReset',
+				'id' => 'expReset',
+				'value' => 'Reset',
+			);
+			echo form_reset($expReset); 
+
 			$addExpData = array(
 				'name' => 'expSub',
 				'id' => 'expSub',

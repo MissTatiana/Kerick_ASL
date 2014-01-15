@@ -32,15 +32,11 @@ class User extends CI_Controller {
 		
 		//load form validation
 		$this->load->library('form_validation');
+
 		$this->form_validation->set_rules(array(
 			array(
 				'field' => 'user_id',
 				'label' => 'User id',
-				'rules' => 'required',
-			),
-			array(
-				'field' => 'trans_type',
-				'label' => 'Type',
 				'rules' => 'required',
 			),
 			array(
@@ -54,7 +50,7 @@ class User extends CI_Controller {
 				'rules' => 'trim|required',
 			),
 			array(
-				'field' => 'trans_category',
+				'field' => 'category_id',
 				'label' => 'Category',
 				'rules' => 'trim|required',
 			),
@@ -68,6 +64,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<div class="alert alert-success"', '</div>');
 		
 		if($this->form_validation->run() == FALSE) {
+			echo 'form failed';
 			//if form validation didnt run
 			//load add expense view, with array of categories
 			$this->load->view('user/add_expense', array(
@@ -75,16 +72,17 @@ class User extends CI_Controller {
 			));
 		}
 		else {
+			echo 'form passed';
 			//load model
 			$this->load->model('Transactions');
 			$trans = new Transactions();
 			
 			//extract values 
 			$trans->user_id = $this->input->post('user_id');
-			$trans->trans_type = $this->input->post('trans_type');
+			$trans->trans_type = $this->input->post(0);
 			$trans->trans_date = $this->input->post('trans_date');
 			$trans->trans_amount = $this->input->post('trans_amount');
-			$trans->trans_category = $this->input->post('trans_category');
+			$trans->trans_category = $this->input->post('category_id');
 			$trans->trans_note = $this->input->post('trans_note');
 			
 			//save to db
@@ -121,11 +119,6 @@ class User extends CI_Controller {
 				'rules' => 'required'
 			),
 			array(
-				'field' => 'inc_trans_type',
-				'label' => 'Type',
-				'rules' => 'required'
-			),
-			array(
 				'field' => 'inc_trans_date',
 				'label' => 'Date',
 				'rules' => 'trim|required'
@@ -158,7 +151,7 @@ class User extends CI_Controller {
 			$trans = new Transactions();
 			
 			$trans->user_id = $this->input->post('inc_user_id');
-			$trans->trans_type = $this->input->post('inc_trans_type');
+			$trans->trans_type = $this->input->post('2');
 			$trans->trans_date = $this->input->post('inc_trans_date');
 			$trans->trans_amount = $this->input->post('inc_trans_amount');
 			$trans->trans_category = $this->input->post('inc_trans_category');
@@ -171,7 +164,7 @@ class User extends CI_Controller {
 		
 		$this->load->view('bootstrap/footer');
 	}
-	
+
 /*	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	
  * 			Category CRUD
  =	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	*/	
@@ -196,6 +189,7 @@ class User extends CI_Controller {
 		foreach($categories as $category) {
 			$cats[] = array(
 				$category->category_name,
+				$category->category_type,
 				anchor('user/editCategory/' . $category->category_id, 'Edit') . ' | ' .
 				anchor('user/deleteCategory/' . $category->category_id, 'Delete'),
 			);
@@ -207,6 +201,11 @@ class User extends CI_Controller {
 				'field' => 'category_name',
 				'label' => 'Category Name',
 				'rules' => 'trim|required',
+ 			),
+ 			array(
+				'field' => 'category_type',
+				'label' => 'Type ',
+				'rules' => 'required',
  			),
 		));
 		$this->form_validation->set_error_delimiters('<div class="alert alert-success">', '</div>');  
@@ -221,6 +220,7 @@ class User extends CI_Controller {
 		else {
 			//extrack from input
 			$cat->category_name = $this->input->post('category_name');
+			$cat->category_type = $this->input->post('category_type');
 			//save to db
 			$cat->save();
 			
