@@ -24,7 +24,7 @@ class User extends CI_Controller {
 		
 		//populate categories for dropdown
 		$this->load->model('Category');
-		$categories = $this->Category->get();
+		$categories = $this->Category->get_where(0);
 		$category_from_options = array();
 		foreach($categories as $id => $category) {
 			$category_from_options[$id] = $category->category_name;
@@ -64,7 +64,6 @@ class User extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<div class="alert alert-success"', '</div>');
 		
 		if($this->form_validation->run() == FALSE) {
-			echo 'form failed';
 			//if form validation didnt run
 			//load add expense view, with array of categories
 			$this->load->view('user/add_expense', array(
@@ -72,7 +71,6 @@ class User extends CI_Controller {
 			));
 		}
 		else {
-			echo 'form passed';
 			//load model
 			$this->load->model('Transactions');
 			$trans = new Transactions();
@@ -80,7 +78,10 @@ class User extends CI_Controller {
 			//extract values 
 			$trans->user_id = $this->input->post('user_id');
 			$trans->trans_type = $this->input->post(0);
-			$trans->trans_date = $this->input->post('trans_date');
+			
+			$formatDate = date('Y-m-d', strtotime($this->input->post('trans_date')));
+			
+			$trans->trans_date = $formatDate;
 			$trans->trans_amount = $this->input->post('trans_amount');
 			$trans->trans_category = $this->input->post('category_id');
 			$trans->trans_note = $this->input->post('trans_note');

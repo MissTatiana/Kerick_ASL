@@ -72,6 +72,20 @@ class My_Model extends CI_Model {
 		return $ret_val;
 	 }//end get
 	 
+	public function get_where($type) {
+		$query = $this->db->get_where($this::DB_TABLE, array('category_type' => $type));
+		
+		$ret_val = array();
+		$class = get_class($this);
+		
+		foreach($query->result() as $row) {
+			$model = new $class;
+			$model->populate($row);
+			$ret_val[$row->{$this::DB_TABLE_PK}] = $model;
+		} 
+		return $ret_val;
+	}
+	 
 	 public function login($email, $password) {
 	 	$this->db->select('user_id, user_email, user_first');
 		$this->db->from('users');
