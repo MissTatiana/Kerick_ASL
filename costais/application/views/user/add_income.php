@@ -9,8 +9,8 @@
 		<div>
 		<?php
 			$user_id = array(
-				'name' => 'user_id',
-				'id' => 'user_id',
+				'name' => 'inc_user_id',
+				'id' => 'inc_user_id',
 				'value' => 15,
 			);
 			echo form_hidden($user_id);
@@ -23,8 +23,8 @@
 		<!-- probably will need to be hidden -->
 		<?php 
 			$typeData = array(
-				'name' => 'trans_type',
-				'id' => 'trans_type',
+				'name' => 'inc_trans_type',
+				'id' => 'inc_trans_type',
 				'value' => '1',
 			);
 			echo form_input($typeData);
@@ -36,10 +36,10 @@
 		<!-- this needs to be a date select -->
 		<?php 
 			$dateData = array(
-				'name' => 'trans_date',
-				'id' => 'trans_date',
+				'name' => 'inc_trans_date',
+				'id' => 'inc_trans_date',
 			);
-			echo form_label('Date:', 'trans_date');
+			echo form_label('Date:', 'inc_trans_date');
 			echo form_input($dateData);
 		?>
 		</div>
@@ -48,10 +48,10 @@
 		<div>
 		<?php 
 			$amountData = array(
-				'name' => 'trans_amount',
-				'id' => 'trans_amount',
+				'name' => 'inc_trans_amount',
+				'id' => 'inc_trans_amount',
 			);
-			echo form_label('Amount:', 'trans_amount');
+			echo form_label('Amount:', 'inc_trans_amount');
 			echo form_input($amountData);
 		?>
 		</div>
@@ -61,10 +61,10 @@
 		<!-- this needs to be a dropdown populated from db -->
 		<?php 
 			$catData = array(
-				'name' => 'trans_category',
-				'id' => 'trans_category',
+				'name' => 'inc_trans_category',
+				'id' => 'inc_trans_category',
 			);
-			echo form_label('Category:', 'trans_category');
+			echo form_label('Category:', 'inc_trans_category');
 			echo form_input($catData);
 		?>
 		</div>
@@ -73,12 +73,12 @@
 		<div>
 		<?php 
 			$noteData = array (
-			  'name' => 'trans_note',
-              'id' => 'trans_note',
+			  'name' => 'inc_trans_note',
+              'id' => 'inc_trans_note',
               'rows' => '8',
               'cols' => '10',
 			);
-			echo form_label('Note:', 'trans_note');
+			echo form_label('Note:', 'inc_trans_note');
 			echo form_textarea($noteData);
 		?>
 		</div>	

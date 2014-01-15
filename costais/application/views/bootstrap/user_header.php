@@ -44,6 +44,7 @@ if (@array_key_exists($this->uri->segment(2), $menu_items)) {
         <meta name="viewport" content="width=device-width">
 
         <link rel="stylesheet" href="/css/bootstrap.css">
+        <link rel="stylesheet" href="/css/bootstrap-datepicker.css">
         <style>
             body {
                 padding-top: 60px;

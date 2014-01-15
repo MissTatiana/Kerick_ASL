@@ -1,5 +1,5 @@
 <h2>Add Expense</h2>
-
+<?php echo validation_errors(); ?>
 <div id="add_expense">
 	
 	<?php echo form_open(); ?>
@@ -60,12 +60,8 @@
 		<div>
 		<!-- this needs to be a dropdown populated from db -->
 		<?php 
-			$catData = array(
-				'name' => 'trans_category',
-				'id' => 'trans_category',
-			);
 			echo form_label('Category:', 'trans_category');
-			echo form_input($catData);
+			echo form_dropdown('category_id', $category_form_options, set_value('category_id'));
 		?>
 		</div>
 		

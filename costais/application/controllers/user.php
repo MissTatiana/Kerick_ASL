@@ -17,18 +17,158 @@ class User extends CI_Controller {
  =	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	*/		
 	
 	public function addExpense() {
+		//load form helper
 		$this->load->helper('form');
-		
+		//load header
 		$this->load->view('bootstrap/user_header');
-		$this->load->view('user/add_expense');
+		
+		//populate categories for dropdown
+		$this->load->model('Category');
+		$categories = $this->Category->get();
+		$category_from_options = array();
+		foreach($categories as $id => $category) {
+			$category_from_options[$id] = $category->category_name;
+		}
+		
+		//load form validation
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules(array(
+			array(
+				'field' => 'user_id',
+				'label' => 'User id',
+				'rules' => 'required',
+			),
+			array(
+				'field' => 'trans_type',
+				'label' => 'Type',
+				'rules' => 'required',
+			),
+			array(
+				'field' => 'trans_date',
+				'label' => 'Date',
+				'rules' => 'trim|required',
+			),
+			array(
+				'field' => 'trans_amount',
+				'label' => 'Amount',
+				'rules' => 'trim|required',
+			),
+			array(
+				'field' => 'trans_category',
+				'label' => 'Category',
+				'rules' => 'trim|required',
+			),
+			array(
+				'field' => 'trans_note',
+				'label' => 'Note',
+				'rules' => 'trim|required',
+			),	
+		));
+		
+		$this->form_validation->set_error_delimiters('<div class="alert alert-success"', '</div>');
+		
+		if($this->form_validation->run() == FALSE) {
+			//if form validation didnt run
+			//load add expense view, with array of categories
+			$this->load->view('user/add_expense', array(
+				'category_form_options' => $category_from_options,
+			));
+		}
+		else {
+			//load model
+			$this->load->model('Transactions');
+			$trans = new Transactions();
+			
+			//extract values 
+			$trans->user_id = $this->input->post('user_id');
+			$trans->trans_type = $this->input->post('trans_type');
+			$trans->trans_date = $this->input->post('trans_date');
+			$trans->trans_amount = $this->input->post('trans_amount');
+			$trans->trans_category = $this->input->post('trans_category');
+			$trans->trans_note = $this->input->post('trans_note');
+			
+			//save to db
+			$trans->save();
+			$this->load->view('user/user_home');
+		}
+		
 		$this->load->view('bootstrap/footer');
 	}
+
+
+/*	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	
+ * 			Income
+ =	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	*/
 	
 	public function addIncome() {
+		//load form helper
 		$this->load->helper('form');
-		
+		//load header
 		$this->load->view('bootstrap/user_header');
-		$this->load->view('user/add_income');
+		
+		$this->load->model('Category');
+		$categories = $this->Category->get();
+		$category_from_options = array();
+		foreach($categories as $id => $category) {
+			$category_from_options[$id] = $category->category_name;
+		}
+		
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules(array(
+			array(
+				'field' => 'inc_user_id',
+				'label' => 'User id',
+				'rules' => 'required'
+			),
+			array(
+				'field' => 'inc_trans_type',
+				'label' => 'Type',
+				'rules' => 'required'
+			),
+			array(
+				'field' => 'inc_trans_date',
+				'label' => 'Date',
+				'rules' => 'trim|required'
+			),
+			array(
+				'field' => 'inc_trans_amount',
+				'label' => 'Amount',
+				'rules' => 'trim|required',
+			),
+			array(
+				'field' => 'inc_trans_category',
+				'label' => 'Category',
+				'rules' => 'trim|required',
+			),
+			array(
+				'field' => 'inc_trans_note',
+				'label' => 'Note',
+				'rules' => 'trim|required',
+			),
+		));
+		
+		$this->form_validation->set_error_delimiters('<div class="alert alert-success">', '</div>');
+		if($this->form_validation->run() == FALSE) {
+			$this->load->view('user/add_income', array(
+				'category_form_options' => $category_from_options,
+			));
+		}
+		else {
+			$this->load->model('Transactions');
+			$trans = new Transactions();
+			
+			$trans->user_id = $this->input->post('inc_user_id');
+			$trans->trans_type = $this->input->post('inc_trans_type');
+			$trans->trans_date = $this->input->post('inc_trans_date');
+			$trans->trans_amount = $this->input->post('inc_trans_amount');
+			$trans->trans_category = $this->input->post('inc_trans_category');
+			$trans->trans_note = $this->input->post('inc_trans_note');
+			
+			$trans->save();
+			
+			$this->load->view('user/user_home');
+		}
+		
 		$this->load->view('bootstrap/footer');
 	}
 	
