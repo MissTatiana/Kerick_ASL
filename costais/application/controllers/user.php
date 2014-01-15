@@ -6,11 +6,51 @@ class User extends CI_Controller {
  */
  
  //Index for costais controller
-	public function index() {		
-		$this->load->view('bootstrap/user_header');
-		$this->load->view('user/user_home');
+	public function index() {
+
+		if($this->session->userdata('user')){
+			//load url helper
+			$this->load->helper('url');
+			//load header		
+			$this->load->view('bootstrap/user_header');
+			
+			$user = $this->session->userdata('user');
+			$userData = array();
+			array_push($userData, array(
+				'user_id' => $user['id'],
+				'user_first' => $user['first'],
+			));
+			
+			//load table for expense display
+			$this->load->model('Transactions');
+			$trans = $this->Transactions->get();
+			$transactions = array();
+			foreach($trans as $tran) {
+				array_push($transactions, array(
+					'trans_id' => $tran->trans_id,
+					'user_id' => $tran->user_id,
+					'trans_date' => $tran->trans_date,
+					'trans_amount' => $tran->trans_amount,
+					'trans_category' => $tran->trans_category,
+					'trans_note' => $tran->trans_note,
+				));
+			}
+			
+			//load home view with array of data
+			$this->load->view('user/user_home', array(
+				'userData' => $userData,
+				'transactions' => $transactions,
+			));
+		
+		}
+		else {
+			redirect('/costais/');
+		}
+		
+		
+		//load footer
 		$this->load->view('bootstrap/footer');
-	}
+	}//index
 	
 /*	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	
  * 			Expense

@@ -94,68 +94,16 @@ footer {
 }
 
 
-/*	=	=	=	Spending	=	=	=	*/
-
-#spending {
-	height: 500px;
-	margin: 0 0 0 5px;
-}
-
-.em {
-	font-size: 16px;
-	font-weight: bold;
-	float: left;
-	margin: 0 15px 0 0;
-}
-
-.green {
-	color: #52a672;
-	font-size: 16px;
-	margin: 5px 0 5px 0;
-}
-
-.red {
-	color: #a65252;
-	font-size: 16px;
-	margin: 5px 0 5px 0;
-}
-
-#top3 {
-	margin: 5px 0 0 25px;
-}
-
-.tinyem {
-	font-weight: bold;
-	float: left;
-	margin: 0 10px 0 0;
-}
-
-.tinyred {
-	color: #A65252;
-	margin: 0 5px 0 5px;
-}
-
-#totalBar {
-	width: 250px;
-	margin: 3px 0 0 0;
-	border: 1px solid #000;
-}
-
-#total {
-	margin: 5px 0 0 0;
-}
-
-.blue {
-	color: #7B72E9;
-	font-size: 16px;
-}
-
-
 /*	=	=	=	Transactions	=	=	=	*/
 
 #transactions {
 	margin: 0 5px 0 0;
-	height: 500px;
+	height: 600px;
+}
+
+.trans {
+	width: 600px;
+	background-color: #eaeaea;
 }
 
 /*.odd {

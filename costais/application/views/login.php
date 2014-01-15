@@ -3,7 +3,7 @@
 	
 	<h2>Login</h2>
 	
-	<?php echo form_open('costais/verifylogin'); ?>
+	<?php echo form_open('action/login'); ?>
 	
 		<div>
 		<?php 

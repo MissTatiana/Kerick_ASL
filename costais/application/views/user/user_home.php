@@ -1,72 +1,29 @@
 <h2>
-	Hello, user
+	<?php foreach($userData as $user): ?>
+		Hello, <?php echo $user['user_first']; ?>
+	<?php endforeach; ?>
 </h2>
-
-<div id="userLeft">
-	<h4>Spending:</h4>
-	
-	<div id="spending">
-		
-		<p class="em">+ Income:</p>
-		<p class="green">00.00</p>
-		
-		<p class="em">- Expense:</p>
-		<p class="red">00.00</p>
-		
-		<div id="top3">
-			<p class="tinyem">Category</p>
-			<p class="tinyred">00.00</p>
-			
-			<p class="tinyem">Category</p>
-			<p class="tinyred">00.00</p>
-			
-			<p class="tinyem">Category</p>
-			<p class="tinyred">00.00</p>
-		</div><!-- top3 -->
-		
-		<div id="totalBar">
-			
-		</div><!-- hr -->
-		
-		<div id="total">
-			<p class="em">Spending Total:</p>
-			<p class="blue">000.00</p>
-		</div>
-		
-	</div><!-- spending -->
-	
-</div><!-- userLeft -->
 
 
 <div id="userRight">
 	<h4>Transactions:</h4>
 	
 	<div id="transactions">
+	<?php foreach($transactions as $trans): ?>	
 		
-		<div id="trans" class="odd">
-			<div id="transLeft">
-				<p class="note">Note</p>
-				<p>January 2, 2014</p>
-			</div><!-- transLeft -->
-			
-			<div id="transRight">
-				<p class="category">Category</p>
-				<p>$00.00</p>
-			</div><!-- transRight -->
-		</div><!-- trans -->
-		
-		<div id="trans2" class="even">
-			<div id="transLeft2">
-				<p class="note">Note</p>
-				<p>January 2, 2014</p>
-			</div><!-- transLeft -->
-			
-			<div id="transRight2">
-				<p class="category">Category</p>
-				<p>$00.00</p>
-			</div><!-- transRight -->
-		</div><!-- trans -->	
-		
+		<div class="trans">
+            <div class="transLeft">
+                    <p class="note"><?php echo $trans['trans_note']; ?></p>
+                    <p><?php echo $trans['trans_date']; ?></p>
+            </div><!-- transLeft -->
+            
+            <div class="transRight">
+                    <p class="category"><?php echo $trans['trans_category']; ?></p>
+                    <p><?php echo $trans['trans_amount'] ?></p>
+            </div><!-- transRight -->
+	    </div><!-- trans -->      
+		<!-- <p><?php echo $trans['trans_id']; ?></p>-->
+	<?php endforeach; ?>
 	</div><!-- transactions -->
 	
 </div><!-- userRight -->

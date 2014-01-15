@@ -2,7 +2,7 @@
 
 class Transactions extends My_Model {
 	const DB_TABLE = 'transactions';
-	const DB_TABLE_PK = 'tans_id';
+	const DB_TABLE_PK = 'trans_id';
 	
 	//Transactions unqiue identifier - int
 	public $trans_id;

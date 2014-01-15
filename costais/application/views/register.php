@@ -4,7 +4,7 @@
 	<h2>Register</h2>
 	
 	<?php echo validation_errors(); ?>
-	<?php echo form_open(); ?>
+	<?php echo form_open('/action/register'); ?>
 		
 		<!-- First name -->
 		<div id="firstName">
