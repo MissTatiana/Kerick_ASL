@@ -15,6 +15,7 @@ class User extends CI_Controller {
 			$this->load->view('bootstrap/user_header');
 			
 			$user = $this->session->userdata('user');
+			$user_id = $user['id'];
 			$userData = array();
 			array_push($userData, array(
 				'user_id' => $user['id'],
@@ -23,12 +24,11 @@ class User extends CI_Controller {
 			
 			//load table for expense display
 			$this->load->model('Transactions');
-			$trans = $this->Transactions->get();
+			$trans = $this->Transactions->get_with_id($user_id);
 			$transactions = array();
 			foreach($trans as $tran) {
 				array_push($transactions, array(
-					'trans_id' => $tran->trans_id,
-					'user_id' => $tran->user_id,
+					'trans_type' => $tran->trans_type,
 					'trans_date' => $tran->trans_date,
 					'trans_amount' => $tran->trans_amount,
 					'trans_category' => $tran->trans_category,
@@ -57,6 +57,10 @@ class User extends CI_Controller {
  =	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	*/		
 	
 	public function addExpense() {
+		//load session data		
+		$user = $this->session->userdata('user');
+		$user_id = $user['id'];
+		
 		//load form helper
 		$this->load->helper('form');
 		//load header
@@ -70,67 +74,16 @@ class User extends CI_Controller {
 			$category_from_options[$id] = $category->category_name;
 		}
 		
-		//load form validation
-		$this->load->library('form_validation');
-
-		$this->form_validation->set_rules(array(
-			array(
-				'field' => 'user_id',
-				'label' => 'User id',
-				'rules' => 'required',
-			),
-			array(
-				'field' => 'trans_date',
-				'label' => 'Date',
-				'rules' => 'trim|required',
-			),
-			array(
-				'field' => 'trans_amount',
-				'label' => 'Amount',
-				'rules' => 'trim|required',
-			),
-			array(
-				'field' => 'category_id',
-				'label' => 'Category',
-				'rules' => 'trim|required',
-			),
-			array(
-				'field' => 'trans_note',
-				'label' => 'Note',
-				'rules' => 'trim|required',
-			),	
-		));
-		
-		$this->form_validation->set_error_delimiters('<div class="alert alert-success"', '</div>');
-		
-		if($this->form_validation->run() == FALSE) {
-			//if form validation didnt run
-			//load add expense view, with array of categories
+		if($this->session->flashdata('success')) {
+			redirect('/user/');
+		}
+		else {
 			$this->load->view('user/add_expense', array(
 				'category_form_options' => $category_from_options,
 			));
 		}
-		else {
-			//load model
-			$this->load->model('Transactions');
-			$trans = new Transactions();
-			
-			//extract values 
-			$trans->user_id = $this->input->post('user_id');
-			$trans->trans_type = $this->input->post(0);
-			
-			$formatDate = date('Y-m-d', strtotime($this->input->post('trans_date')));
-			
-			$trans->trans_date = $formatDate;
-			$trans->trans_amount = $this->input->post('trans_amount');
-			$trans->trans_category = $this->input->post('category_id');
-			$trans->trans_note = $this->input->post('trans_note');
-			
-			//save to db
-			$trans->save();
-			$this->load->view('user/user_home');
-		}
 		
+		//load footer
 		$this->load->view('bootstrap/footer');
 	}
 
@@ -140,69 +93,33 @@ class User extends CI_Controller {
  =	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	*/
 	
 	public function addIncome() {
+		//load session data		
+		$user = $this->session->userdata('user');
+		$user_id = $user['id'];
+		
 		//load form helper
 		$this->load->helper('form');
 		//load header
 		$this->load->view('bootstrap/user_header');
 		
+		//populate categories for dropdown
 		$this->load->model('Category');
-		$categories = $this->Category->get();
+		$categories = $this->Category->get_where(1);
 		$category_from_options = array();
 		foreach($categories as $id => $category) {
 			$category_from_options[$id] = $category->category_name;
 		}
 		
-		$this->load->library('form_validation');
-		$this->form_validation->set_rules(array(
-			array(
-				'field' => 'inc_user_id',
-				'label' => 'User id',
-				'rules' => 'required'
-			),
-			array(
-				'field' => 'inc_trans_date',
-				'label' => 'Date',
-				'rules' => 'trim|required'
-			),
-			array(
-				'field' => 'inc_trans_amount',
-				'label' => 'Amount',
-				'rules' => 'trim|required',
-			),
-			array(
-				'field' => 'inc_trans_category',
-				'label' => 'Category',
-				'rules' => 'trim|required',
-			),
-			array(
-				'field' => 'inc_trans_note',
-				'label' => 'Note',
-				'rules' => 'trim|required',
-			),
-		));
-		
-		$this->form_validation->set_error_delimiters('<div class="alert alert-success">', '</div>');
-		if($this->form_validation->run() == FALSE) {
-			$this->load->view('user/add_income', array(
+		if($this->session->flashdata('success')) {
+			redirect('/user/');
+		}
+		else {
+			$this->load->view('user/add_expense', array(
 				'category_form_options' => $category_from_options,
 			));
 		}
-		else {
-			$this->load->model('Transactions');
-			$trans = new Transactions();
-			
-			$trans->user_id = $this->input->post('inc_user_id');
-			$trans->trans_type = $this->input->post('2');
-			$trans->trans_date = $this->input->post('inc_trans_date');
-			$trans->trans_amount = $this->input->post('inc_trans_amount');
-			$trans->trans_category = $this->input->post('inc_trans_category');
-			$trans->trans_note = $this->input->post('inc_trans_note');
-			
-			$trans->save();
-			
-			$this->load->view('user/user_home');
-		}
 		
+		//load footer
 		$this->load->view('bootstrap/footer');
 	}
 

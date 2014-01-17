@@ -2,6 +2,10 @@
 
 class Action extends CI_Controller {
 	
+/*	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	
+ * 						 User Functions
+=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	 */	
+	
 	public function register() {
 
 		//load validation for register
@@ -133,6 +137,138 @@ class Action extends CI_Controller {
 			}
 		}
 		
-	}
+	}//end login
+	
+/*	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	
+ * 						 Expense Functions
+=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	 */	
+
+	public function addExpense() {
+		//load session data		
+		$user = $this->session->userdata('user');
+		$user_id = $user['id'];
+				
+		//load form validation
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules(array(
+			array(
+				'field' => 'trans_date',
+				'label' => 'Date',
+				'rules' => 'trim|required',
+			),
+			array(
+				'field' => 'trans_amount',
+				'label' => 'Amount',
+				'rules' => 'trim|required',
+			),
+			array(
+				'field' => 'category_id',
+				'label' => 'Category',
+				'rules' => 'trim|required',
+			),
+			array(
+				'field' => 'trans_note',
+				'label' => 'Note',
+				'rules' => 'trim|required',
+			),	
+		));
+		
+		$this->form_validation->set_error_delimiters('<div class="alert alert-success"', '</div>');
+		
+		if($this->form_validation->run() == FALSE) {
+			//if form validation didnt run
+			$this->session->set_flashdata('success', false);
+			redirect('/user/addExpense');
+		}
+		else {
+			//load model
+			$this->load->model('Transactions');
+			$trans = new Transactions();
+			
+			//extract values 
+			$trans->user_id = $user_id;
+			$trans->trans_type = $this->input->post(0);
+			
+			$formatDate = date('Y-m-d', strtotime($this->input->post('trans_date')));
+			
+			$trans->trans_date = $formatDate;
+			$trans->trans_amount = $this->input->post('trans_amount');
+			$trans->trans_category = $this->input->post('category_id');
+			$trans->trans_note = $this->input->post('trans_note');
+			
+			//save to db
+			$trans->save();
+			
+			$this->session->set_flashdata('success', true);
+			
+			redirect('/user/addExpense');
+		}
+		
+	}//end addExpense
+	
+	
+	public function addIncom() {
+		//load session data		
+		$user = $this->session->userdata('user');
+		$user_id = $user['id'];
+				
+		//load form validation
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules(array(
+			array(
+				'field' => 'inc_trans_date',
+				'label' => 'Date',
+				'rules' => 'trim|required',
+			),
+			array(
+				'field' => 'inc_trans_amount',
+				'label' => 'Amount',
+				'rules' => 'trim|required',
+			),
+			array(
+				'field' => 'inc_category_id',
+				'label' => 'Category',
+				'rules' => 'trim|required',
+			),
+			array(
+				'field' => 'inc_trans_note',
+				'label' => 'Note',
+				'rules' => 'trim|required',
+			),	
+		));
+		
+		$this->form_validation->set_error_delimiters('<div class="alert alert-success"', '</div>');
+		
+		if($this->form_validation->run() == FALSE) {
+			//if form validation didnt run
+			$this->session->set_flashdata('success', false);
+			redirect('/user/Income');
+		}
+		else {
+			//load model
+			$this->load->model('Transactions');
+			$trans = new Transactions();
+			
+			//extract values 
+			$trans->user_id = $user_id;
+			$trans->trans_type = $this->input->post(1);
+			
+			$formatDate = date('Y-m-d', strtotime($this->input->post('inc_trans_date')));
+			
+			$trans->trans_date = $formatDate;
+			$trans->trans_amount = $this->input->post('inc_trans_amount');
+			$trans->trans_category = $this->input->post('inc_category_id');
+			$trans->trans_note = $this->input->post('inc_trans_note');
+			
+			//save to db
+			$trans->save();
+			
+			$this->session->set_flashdata('success', true);
+			
+			redirect('/user/addIncome');
+		}
+		
+	}//end addExpense
+
 	
 }//end class

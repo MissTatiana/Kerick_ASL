@@ -72,6 +72,23 @@ class My_Model extends CI_Model {
 		return $ret_val;
 	 }//end get
 	 
+	 //Get user's expenses
+	 public function get_with_id($user_id) {
+
+		$query = $this->db->get_where($this::DB_TABLE, array('user_id' => $user_id));
+				
+		$ret_val = array();
+		$class = get_class($this);
+		
+		foreach($query->result() as $row) {
+			$model = new $class;
+			$model->populate($row);
+			$ret_val[$row->{$this::DB_TABLE_PK}] = $model;
+		} 
+		return $ret_val;
+	 }//end get
+	 
+	 //get the type of expense for adding expense/income
 	public function get_where($type) {
 		$query = $this->db->get_where($this::DB_TABLE, array('category_type' => $type));
 		

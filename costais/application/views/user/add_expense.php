@@ -2,20 +2,7 @@
 <?php echo validation_errors(); ?>
 <div id="add_expense">
 	
-	<?php echo form_open(); ?>
-	
-		<!-- how should I go about getting in the user id in? -->
-		<!-- user id -->
-		<div>
-		<?php
-			$user_id = array(
-				'name' => 'user_id',
-				'id' => 'user_id',
-				'value' => 15,
-			);
-			echo form_input($user_id);
-		?>
-		</div>
+	<?php echo form_open('/action/addExpense'); ?>
 		
 		<!-- will need if to determing the value to send in for the trans_type -->
 		
