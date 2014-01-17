@@ -269,6 +269,47 @@ class Action extends CI_Controller {
 		}
 		
 	}//end addExpense
+	
+/*	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	
+ * 						 Expense Functions
+=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	 */	
 
+	public function categories() {
+		
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules(array(
+			array(
+				'field' => 'category_name',
+				'label' => 'Category Name',
+				'rules' => 'trim|required',
+ 			),
+ 			array(
+				'field' => 'category_type',
+				'label' => 'Type ',
+				'rules' => 'required',
+ 			),
+		));
+		$this->form_validation->set_error_delimiters('<div class="alert alert-success">', '</div>');  
+		
+		if($this->form_validation->run() == FALSE) {
+			//if validation didn't run
+			$this->session->set_flashdata('success', false);
+			redirect('/user/categories');
+		}   
+		else {
+			//extrack from input
+			$cat->category_name = $this->input->post('category_name');
+			$cat->category_type = $this->input->post('category_type');
+			//save to db
+			$cat->save();
+			
+			//after successful db add, load the page again
+			$this->session->set_flashdata('success', true);
+			redirect('/user/categories');	
+		}
+		
+		//load footer
+		$this->load->view('bootstrap/footer');
+	}
 	
 }//end class
