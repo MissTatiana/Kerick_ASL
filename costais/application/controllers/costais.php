@@ -29,6 +29,10 @@ class Costais extends CI_Controller {
 			$this->load->view('register');
 		}
 		
+		if($this->session->flashdata('bad_creditials')) {
+			//set some message for wrong email/password
+		}
+		
 		$this->load->view('bootstrap/footer');
 		
 	}//end register

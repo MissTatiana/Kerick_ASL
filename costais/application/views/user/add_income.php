@@ -2,35 +2,8 @@
 
 <div id="add_income">
 
-	<?php echo form_open(); ?>
+	<?php echo form_open('/action/addIncome'); ?>
 	
-		<!-- how should I go about getting in the user id in? -->
-		<!-- user id -->
-		<div>
-		<?php
-			$user_id = array(
-				'name' => 'inc_user_id',
-				'id' => 'inc_user_id',
-				'value' => 15,
-			);
-			echo form_hidden($user_id);
-		?>
-		</div>
-		
-		<!-- will need if to determing the value to send in for the trans_type -->
-		<!-- Type -->
-		<div>
-		<!-- probably will need to be hidden -->
-		<?php 
-			$typeData = array(
-				'name' => 'inc_trans_type',
-				'id' => 'inc_trans_type',
-				'value' => '1',
-			);
-			echo form_input($typeData);
-		?>	
-		</div>	
-		
 		<!-- Date -->
 		<div>
 		<!-- this needs to be a date select -->
@@ -60,12 +33,8 @@
 		<div>
 		<!-- this needs to be a dropdown populated from db -->
 		<?php 
-			$catData = array(
-				'name' => 'inc_trans_category',
-				'id' => 'inc_trans_category',
-			);
-			echo form_label('Category:', 'inc_trans_category');
-			echo form_input($catData);
+			echo form_label('Category:', 'inc_category_id');
+			echo form_dropdown('inc_category_id', $category_form_options, set_value('category_name'));
 		?>
 		</div>
 		

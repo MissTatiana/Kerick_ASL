@@ -114,7 +114,7 @@ class User extends CI_Controller {
 			redirect('/user/');
 		}
 		else {
-			$this->load->view('user/add_expense', array(
+			$this->load->view('user/add_income', array(
 				'category_form_options' => $category_from_options,
 			));
 		}

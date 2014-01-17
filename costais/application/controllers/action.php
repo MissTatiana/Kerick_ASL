@@ -133,7 +133,9 @@ class Action extends CI_Controller {
 				redirect('/user/');
 			}
 			else {
-				$this->session->set_flashdata('success', false);
+				$this->session->set_flashdata('bad_creditials', false);
+				
+				redirect('/costais/login');
 			}
 		}
 		
@@ -187,7 +189,7 @@ class Action extends CI_Controller {
 			
 			//extract values 
 			$trans->user_id = $user_id;
-			$trans->trans_type = $this->input->post(0);
+			$trans->trans_type = 0;
 			
 			$formatDate = date('Y-m-d', strtotime($this->input->post('trans_date')));
 			
@@ -207,7 +209,7 @@ class Action extends CI_Controller {
 	}//end addExpense
 	
 	
-	public function addIncom() {
+	public function addIncome() {
 		//load session data		
 		$user = $this->session->userdata('user');
 		$user_id = $user['id'];
@@ -242,7 +244,7 @@ class Action extends CI_Controller {
 		if($this->form_validation->run() == FALSE) {
 			//if form validation didnt run
 			$this->session->set_flashdata('success', false);
-			redirect('/user/Income');
+			redirect('/user/addIncome');
 		}
 		else {
 			//load model
@@ -251,7 +253,7 @@ class Action extends CI_Controller {
 			
 			//extract values 
 			$trans->user_id = $user_id;
-			$trans->trans_type = $this->input->post(1);
+			$trans->trans_type = 1;
 			
 			$formatDate = date('Y-m-d', strtotime($this->input->post('inc_trans_date')));
 			

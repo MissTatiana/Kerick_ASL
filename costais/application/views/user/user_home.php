@@ -5,12 +5,11 @@
 </h2>
 
 
-<div id="userRight">
+<div id="userLeft">
 	<h3>Transactions:</h3>
 	
 	<div id="transactions">
 	<?php 
-	$c = true;
 	foreach($transactions as $trans) {	
 		echo '<div class="trans">';
             echo '<div class="transLeft">';
@@ -32,6 +31,26 @@
 	?>
 	</div><!-- transactions -->
 	
+</div><!-- userLeft -->
+
+<div id="userRight">
+	<h3>Spending:</h3>
+	<?php
+	$expenseSum = 0;
+	$incomeSum = 0;
+	foreach($transactions as $trans) {
+		
+		if($trans['trans_type'] == 0) {
+			$expenseSum += $trans['trans_amount'];
+		}
+		
+		else if($trans['trans_type'] == 1) {
+			$incomeSum += $trans['trans_amount'];
+		}
+	}
+		echo $incomeSum . '<br />';
+		echo $expenseSum;
+	?>
 </div><!-- userRight -->
 
 <br />
