@@ -91,6 +91,7 @@ footer {
 #userLeft {
 	float: left;
 	width: 350px;
+	margin: 0 200px 0 0;
 }
 
 /*	=	=	=	Transactions	=	=	=	*/
@@ -140,6 +141,46 @@ footer {
 	margin: 0 0 0 0;
 }
 
+/*	=	=	=	=	Spending	=	=	=	=	*/
+
+#userRight {
+	margin-bottom: 700px;
+}
+
+.em {
+	float: left;
+	width: 75px;
+	margin: 0 20px 0 0;
+	text-align: right;
+}
+
+#incSum {
+	font-size: 16px;
+	color: #52a627;
+}
+
+#expSum {
+	font-size: 16px;
+	color: #a65252;
+}
+
+#equales {
+	border-bottom: 2px solid #000;
+	width: 250px;
+	margin: 0 0 15px 525px;
+}
+
+.emTotal {
+	float: left;
+	width: 150px;
+	margin: 0 0 0 0;
+}
+
+#total  {
+	font-size: 16px;
+}
+
+
 /*	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	
  * 					Add expense/income/Categories
  =	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	*/
@@ -187,4 +228,4 @@ td {
 	width: 150px;
 }
 
-
+``

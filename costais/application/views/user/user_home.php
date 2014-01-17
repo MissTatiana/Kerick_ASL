@@ -36,8 +36,8 @@
 <div id="userRight">
 	<h3>Spending:</h3>
 	<?php
-	$expenseSum = 0;
 	$incomeSum = 0;
+	$expenseSum = 0;
 	foreach($transactions as $trans) {
 		
 		if($trans['trans_type'] == 0) {
@@ -48,8 +48,31 @@
 			$incomeSum += $trans['trans_amount'];
 		}
 	}
-		echo $incomeSum . '<br />';
-		echo $expenseSum;
+	
+	echo '<div id="spending">';
+		echo '<div>';
+			echo '<h4 class="em">Income: </h5>';
+			echo '<p id="incSum">+ $' . $incomeSum . '</p>';
+		echo '</div>';
+		
+		
+		echo '<div>';
+			echo '<h4 class="em">Expense: </h5>';
+			echo '<p id="expSum">- $' . $expenseSum . '</p>';
+		echo '</div>';
+		
+		echo '<div id="equales"></div>';
+		
+		echo '<h4 class="emTotal"> Spending Total: </h5>';
+		$total = $incomeSum - $expenseSum;
+		if($total < 1) {
+			echo '<p id="total" style="color: #a65252">$' . $total . '</p>';
+		}
+		else {
+			echo '<p id="total" style="color: #52a627">$' . $total . '</p>';
+		}
+		
+	echo '</div>';//spending
 	?>
 </div><!-- userRight -->
 

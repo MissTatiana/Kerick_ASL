@@ -74,7 +74,8 @@ class My_Model extends CI_Model {
 	 
 	 //Get user's expenses
 	 public function get_with_id($user_id) {
-
+		
+		$this->db->order_by('trans_date', 'asc');
 		$query = $this->db->get_where($this::DB_TABLE, array('user_id' => $user_id));
 				
 		$ret_val = array();

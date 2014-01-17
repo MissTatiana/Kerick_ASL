@@ -4,8 +4,6 @@
 	
 	<?php echo form_open('/action/addExpense'); ?>
 		
-		<!-- will need if to determing the value to send in for the trans_type -->
-		
 		<!-- Date -->
 		<div>
 		<!-- this needs to be a date select -->
