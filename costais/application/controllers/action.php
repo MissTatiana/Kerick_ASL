@@ -208,10 +208,16 @@ class Action extends CI_Controller {
 		
 	}//end addExpense
 	
-	public function editExpense() {
+	public function editExpense($trans_id) {
 		//load session data		
 		$user = $this->session->userdata('user');
 		$user_id = $user['id'];
+		
+		echo $this->input('edit_trans_id');
+		echo $this->input('edit_trans_date');
+		echo $this->input('edit_trans_amount');
+		echo $this->input('edit_trans_category');
+		echo $this->input('edit_trans_note');		
 				
 		//load form validation
 		$this->load->library('form_validation');
@@ -238,6 +244,8 @@ class Action extends CI_Controller {
 			),	
 		));
 		
+		
+		
 		$this->form_validation->set_error_delimiters('<div class="alert alert-success"', '</div>');
 		
 		if($this->form_validation->run() == FALSE) {
@@ -253,6 +261,7 @@ class Action extends CI_Controller {
 			//extract values 
 			$trans->user_id = $user_id;
 			$trans->trans_type = 0;
+			$trans->trans_id = $this->input('edit_trans_id');
 			
 			$formatDate = date('Y-m-d', strtotime($this->input->post('trans_date')));
 			

@@ -2,8 +2,15 @@
 <?php echo validation_errors(); ?>
 <div id="edit_expense">
 	
-	<?php echo form_open('/action/editExpense'); ?>
+	<?php echo form_open('/user/editExpense/'); ?>
 		
+		<!-- Transaction id -->
+		<div>
+			<?php 
+				echo '<input name="edit_trans_id" value="' . $transactions->trans_id . '" readonly />'
+			?>
+		</div>
+		<br />
 		<!-- Date -->
 		<div>
 		<!-- this needs to be a date select -->

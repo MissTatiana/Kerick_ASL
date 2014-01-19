@@ -91,7 +91,12 @@ class User extends CI_Controller {
 	}//end addExpense
 	
 	public function editExpense($trans_id) {
+		$this->load->helper('url');
 		$this->load->helper('form');
+		
+		//load session data		
+		$user = $this->session->userdata('user');
+		$user_id = $user['id'];
 		
 		$this->load->view('bootstrap/user_header');
 		
@@ -110,16 +115,61 @@ class User extends CI_Controller {
 		$category = new Category();
 		$category->load($transactions->trans_category);
 		
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules(array(
+			array(
+				'field' => 'edit_trans_date',
+				'label' => 'Date',
+				'rules' => 'trim|required',
+			),
+			array(
+				'field' => 'edit_trans_amount',
+				'label' => 'Amount',
+				'rules' => 'trim|required',
+			),
+			array(
+				'field' => 'edit_category_id',
+				'label' => 'Category',
+				'rules' => 'trim|required',
+			),
+			array(
+				'field' => 'edit_trans_note',
+				'label' => 'Note',
+				'rules' => 'trim|required',
+			),
+		));		
 		
-		if($this->session->flashdata('success')) {
-			redirect('/user/');
-		}
-		else {
+		$this->form_validation->set_error_delimiters('<div class="alert alert-success">', '</div>');
+		
+		
+		if($this->form_validation->run() == FALSE) {
 			$this->load->view('user/edit_expense', array(
 				'transactions' => $transactions,
 				'category_form_options' => $category_form_options,
 				'category' => $category,
 			));
+		}
+		else {
+			//load model
+			$this->load->model('Transactions');
+			$trans = new Transactions();
+			
+			//extract values;
+			
+			$trans->user_id = $user_id;
+			$trans->trans_type = 0;
+			$trans->trans_id = $this->input->post('edit_trans_id');
+			
+			$formatDate = date('Y-m-d', strtotime($this->input->post('edit_trans_date')));
+			
+			$trans->trans_date = $formatDate;
+			$trans->trans_amount = $this->input->post('edit_trans_amount');
+			$trans->trans_category = $this->input->post('edit_trans_category');
+			$trans->trans_note = $this->input->post('edit_trans_note');
+			
+			$trans->update();
+			
+			redirect('/user/');
 		}
 	
 		$this->load->view('bootstrap/footer');

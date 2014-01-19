@@ -7,6 +7,8 @@ $(document).ready(function() {
 	
 	$("#inc_trans_date").datepicker();
 	
+	$("#edit_inc_trans_date").datepicker();
+	
 	$("#raptorBtn").click(function(r) {
 		$("#raptor").toggle();
 		
