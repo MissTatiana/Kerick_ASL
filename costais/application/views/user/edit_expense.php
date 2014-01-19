@@ -2,15 +2,22 @@
 <?php echo validation_errors(); ?>
 <div id="edit_expense">
 	
-	<?php echo form_open('/user/editExpense/'); ?>
+	<?php echo form_open(); ?>
 		
 		<!-- Transaction id -->
 		<div>
 			<?php 
-				echo '<input name="edit_trans_id" value="' . $transactions->trans_id . '" readonly />'
+				$idData = array(
+					'name' => 'edit_trans_id',
+					'id' => 'edit_trans_id',
+					'readonly' => 'readonly',
+					'value' => $transactions->trans_id,
+	 			);
+				echo form_label('Transactions Id:', 'edit_trans_id');
+				echo form_input($idData);
 			?>
 		</div>
-		<br />
+		
 		<!-- Date -->
 		<div>
 		<!-- this needs to be a date select -->
@@ -18,7 +25,7 @@
 			$dateData = array(
 				'name' => 'edit_trans_date',
 				'id' => 'edit_trans_date',
-				'value' => $transactions->trans_date
+				'value' => $transactions->trans_date,
  			);
 			echo form_label('Date:', 'edit_trans_date');
 			echo form_input($dateData);
@@ -31,7 +38,7 @@
 			$amountData = array(
 				'name' => 'edit_trans_amount',
 				'id' => 'edit_trans_amount',
-				'value' => $transactions->trans_amount
+				'value' => $transactions->trans_amount,
 			);
 			echo form_label('Amount:', 'edit_trans_amount');
 			echo form_input($amountData);

@@ -2,17 +2,32 @@
 
 <div id="add_income">
 
-	<?php echo form_open('/action/addIncome'); ?>
+	<?php echo form_open(); ?>
 	
+		<!-- Transaction id -->
+		<div>
+			<?php 
+				$idData = array(
+					'name' => 'edit_inc_trans_id',
+					'id' => 'edit_inc_trans_id',
+					'readonly' => 'readonly',
+					'value' => $transactions->trans_id,
+	 			);
+				echo form_label('Transactions Id:', 'edit_inc_trans_id');
+				echo form_input($idData);
+			?>
+		</div>
+		
 		<!-- Date -->
 		<div>
 		<!-- this needs to be a date select -->
 		<?php 
 			$dateData = array(
-				'name' => 'inc_trans_date',
-				'id' => 'inc_trans_date',
+				'name' => 'edit_inc_trans_date',
+				'id' => 'edit_inc_trans_date',
+				'value' => $transactions->trans_date,
 			);
-			echo form_label('Date:', 'inc_trans_date');
+			echo form_label('Date:', 'edit_inc_trans_date');
 			echo form_input($dateData);
 		?>
 		</div>
@@ -21,10 +36,11 @@
 		<div>
 		<?php 
 			$amountData = array(
-				'name' => 'inc_trans_amount',
-				'id' => 'inc_trans_amount',
+				'name' => 'edit_inc_trans_amount',
+				'id' => 'edit_inc_trans_amount',
+				'value' => $transactions->trans_amount,
 			);
-			echo form_label('Amount:', 'inc_trans_amount');
+			echo form_label('Amount:', 'edit_inc_trans_amount');
 			echo form_input($amountData);
 		?>
 		</div>
@@ -33,8 +49,12 @@
 		<div>
 		<!-- this needs to be a dropdown populated from db -->
 		<?php 
-			echo form_label('Category:', 'inc_category_id');
-			echo form_dropdown('inc_category_id', $category_form_options, set_value('category_name'));
+			echo form_label('Category:', 'edit_inc_category_id');
+			$options = array(
+				$transactions->trans_category = $category->category_name,
+				$category_form_options,
+			);
+			echo form_dropdown('edit_inc_category_id', $options, set_value('category_name'));
 		?>
 		</div>
 		
@@ -42,31 +62,32 @@
 		<div>
 		<?php 
 			$noteData = array (
-			  'name' => 'inc_trans_note',
-              'id' => 'inc_trans_note',
+			  'name' => 'edit_inc_trans_note',
+              'id' => 'edit_inc_trans_note',
               'rows' => '8',
               'cols' => '10',
+              'value' => $transactions->trans_note,
 			);
-			echo form_label('Note:', 'inc_trans_note');
+			echo form_label('Note:', 'edit_inc_trans_note');
 			echo form_textarea($noteData);
 		?>
 		</div>	
 		
 		<div>
 		<?php 
-			$incReset = array(
-				'name' => 'incReset',
-				'id' => 'incReset',
+			$editIncReset = array(
+				'name' => 'editIncReset',
+				'id' => 'editIncReset',
 				'value' => 'Reset',
 			);
-			echo form_reset($incReset); 
+			echo form_reset($editIncReset); 
 			
-			$addIncData = array(
-				'name' => 'incSub',
-				'id' => 'incSub',
+			$editIncData = array(
+				'name' => 'editIncSub',
+				'id' => 'editIncSub',
 				'value' => 'Add Income'
 			);
-			echo form_submit($addIncData);
+			echo form_submit($editIncData);
 		?>
 		</div>
 		

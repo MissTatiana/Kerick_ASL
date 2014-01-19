@@ -115,6 +115,7 @@ class User extends CI_Controller {
 		$category = new Category();
 		$category->load($transactions->trans_category);
 		
+		
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules(array(
 			array(
@@ -141,6 +142,7 @@ class User extends CI_Controller {
 		
 		$this->form_validation->set_error_delimiters('<div class="alert alert-success">', '</div>');
 		
+		$formatDate = date('Y-m-d', strtotime($this->input->post('edit_trans_date')));
 		
 		if($this->form_validation->run() == FALSE) {
 			$this->load->view('user/edit_expense', array(
@@ -150,24 +152,25 @@ class User extends CI_Controller {
 			));
 		}
 		else {
+			
 			//load model
 			$this->load->model('Transactions');
 			$trans = new Transactions();
 			
-			//extract values;
-			
-			$trans->user_id = $user_id;
-			$trans->trans_type = 0;
-			$trans->trans_id = $this->input->post('edit_trans_id');
-			
 			$formatDate = date('Y-m-d', strtotime($this->input->post('edit_trans_date')));
+			//extract values;
+			$transData = array(
+				$trans->user_id = $user_id,
+				$trans->trans_type = 0,
+				$trans->trans_id = $this->input->post('edit_trans_id'),
+				$trans->trans_date = $formatDate,
+				$trans->trans_amount = $this->input->post('edit_trans_amount'),
+				$trans->trans_category = $this->input->post('edit_trans_category'),
+				$trans->trans_note = $this->input->post('edit_trans_note'),			
+			);
 			
-			$trans->trans_date = $formatDate;
-			$trans->trans_amount = $this->input->post('edit_trans_amount');
-			$trans->trans_category = $this->input->post('edit_trans_category');
-			$trans->trans_note = $this->input->post('edit_trans_note');
-			
-			$trans->update();
+			//$this->db->where('trans_id', $trans->trans_id);
+			$this->db->update('Transactions', $transData);
 			
 			redirect('/user/');
 		}
@@ -211,6 +214,95 @@ class User extends CI_Controller {
 		//load footer
 		$this->load->view('bootstrap/footer');
 	}
+	
+	public function editIncome($trans_id) {
+		$this->load->helper('url');
+		$this->load->helper('form');
+		
+		//load session data		
+		$user = $this->session->userdata('user');
+		$user_id = $user['id'];
+		
+		$this->load->view('bootstrap/user_header');
+		
+		$this->load->model(array('Transactions', 'Category'));
+		$transactions = new Transactions();
+		$transactions->load($trans_id);
+		
+		//get the list of categories
+		$categories = $this->Category->get_where(1);
+		$category_form_options = array();
+		foreach($categories as $id => $category) {
+			$category_form_options[$id] = $category->category_name;
+		}
+		
+		//get the category with the trans_id		
+		$category = new Category();
+		$category->load($transactions->trans_category);
+		
+		
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules(array(
+			array(
+				'field' => 'edit_inc_trans_date',
+				'label' => 'Date',
+				'rules' => 'trim|required',
+			),
+			array(
+				'field' => 'edit_inc_trans_amount',
+				'label' => 'Amount',
+				'rules' => 'trim|required',
+			),
+			array(
+				'field' => 'edit_inc_category_id',
+				'label' => 'Category',
+				'rules' => 'trim|required',
+			),
+			array(
+				'field' => 'edit_inc_trans_note',
+				'label' => 'Note',
+				'rules' => 'trim|required',
+			),
+		));		
+		
+		$this->form_validation->set_error_delimiters('<div class="alert alert-success">', '</div>');
+		
+		$formatDate = date('Y-m-d', strtotime($this->input->post('edit_inc_trans_date')));
+		
+		if($this->form_validation->run() == FALSE) {
+			$this->load->view('user/edit_income', array(
+				'transactions' => $transactions,
+				'category_form_options' => $category_form_options,
+				'category' => $category,
+			));
+		}
+		else {
+			
+			//load model
+			$this->load->model('Transactions');
+			$trans = new Transactions();
+			
+			$formatDate = date('Y-m-d', strtotime($this->input->post('edit_inc_trans_date')));
+			//extract values;
+			$transData = array(
+				$trans->user_id = $user_id,
+				$trans->trans_type = 0,
+				$trans->trans_id = $this->input->post('edit_inc_trans_id'),
+				$trans->trans_date = $formatDate,
+				$trans->trans_amount = $this->input->post('edit_inc_trans_amount'),
+				$trans->trans_category = $this->input->post('edit_inc_trans_category'),
+				$trans->trans_note = $this->input->post('edit_inc_trans_note'),			
+			);
+			
+			//$this->db->where('trans_id', $trans->trans_id);
+			$this->db->update('Transactions', $transData);
+			
+			redirect('/user/');
+		}
+	
+		$this->load->view('bootstrap/footer');
+		
+	}//end editIncome
 
 	public function delete($trans_id) {
 		$this->load->view('bootstrap/user_header');

@@ -11,9 +11,10 @@ class My_Model extends CI_Model {
 	}//end insert
 	
 	//Update record
-	private function update() {
+	private function update($id) {
+		$this->db->where('trans_id', $id);
 		$this->db->update($this::DB_TABLE, $this, $this::DB_TABLE_PK);
-	}//end update
+	}
 	
 	//Populate from an array or stand class
 	public function populate($row) {
