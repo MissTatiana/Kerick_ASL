@@ -23,16 +23,19 @@ class User extends CI_Controller {
 			));
 			
 			//load table for expense display
-			$this->load->model('Transactions');
+			$this->load->model(array('Transactions', 'Category'));
 			$trans = $this->Transactions->get_with_id($user_id);
 			$transactions = array();
 			foreach($trans as $tran) {
+				$category = new Category();
+				$category->load($tran->trans_category);
 				array_push($transactions, array(
 					'trans_type' => $tran->trans_type,
 					'trans_date' => $tran->trans_date,
 					'trans_amount' => $tran->trans_amount,
-					'trans_category' => $tran->trans_category,
+					'trans_category' => $category->category_name,
 					'trans_note' => $tran->trans_note,
+					'trans_id' => $tran->trans_id,
 				));
 			}
 			
@@ -85,7 +88,43 @@ class User extends CI_Controller {
 		
 		//load footer
 		$this->load->view('bootstrap/footer');
-	}
+	}//end addExpense
+	
+	public function editExpense($trans_id) {
+		$this->load->helper('form');
+		
+		$this->load->view('bootstrap/user_header');
+		
+		$this->load->model(array('Transactions', 'Category'));
+		$transactions = new Transactions();
+		$transactions->load($trans_id);
+		
+		//get the list of categories
+		$categories = $this->Category->get_where(0);
+		$category_form_options = array();
+		foreach($categories as $id => $category) {
+			$category_form_options[$id] = $category->category_name;
+		}
+		
+		//get the category with the trans_id		
+		$category = new Category();
+		$category->load($transactions->trans_category);
+		
+		
+		if($this->session->flashdata('success')) {
+			redirect('/user/');
+		}
+		else {
+			$this->load->view('user/edit_expense', array(
+				'transactions' => $transactions,
+				'category_form_options' => $category_form_options,
+				'category' => $category,
+			));
+		}
+	
+		$this->load->view('bootstrap/footer');
+		
+	}//end editExpense
 
 
 /*	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	
@@ -122,6 +161,18 @@ class User extends CI_Controller {
 		//load footer
 		$this->load->view('bootstrap/footer');
 	}
+
+	public function delete($trans_id) {
+		$this->load->view('bootstrap/user_header');
+		$this->load->model('Transactions');
+		$transaction = new Transactions();
+		$transaction->load($trans_id);
+		if(!$transaction->trans_id) {
+			show_404();
+		}
+		$transaction->delete();
+		redirect('/user/');
+	}//end delete
 
 /*	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	
  * 			Category CRUD
@@ -245,6 +296,8 @@ class User extends CI_Controller {
 		
 		$this->load->view('bootstrap/footer');
 	}
+	
+	
 	
 	public function deleteCategory($category_id) {
 		$this->load->view('bootstrap/user_header');

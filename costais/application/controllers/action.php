@@ -2,9 +2,9 @@
 
 class Action extends CI_Controller {
 	
-/*	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	
+/*	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	
  * 						 User Functions
-=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	 */	
+=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	 =	=	*/	
 	
 	public function register() {
 
@@ -141,9 +141,9 @@ class Action extends CI_Controller {
 		
 	}//end login
 	
-/*	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	
- * 						 Expense Functions
-=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	 */	
+/*	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	
+ * 						 Expense/Income Functions
+=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	 =	=	*/
 
 	public function addExpense() {
 		//load session data		
@@ -208,6 +208,70 @@ class Action extends CI_Controller {
 		
 	}//end addExpense
 	
+	public function editExpense() {
+		//load session data		
+		$user = $this->session->userdata('user');
+		$user_id = $user['id'];
+				
+		//load form validation
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules(array(
+			array(
+				'field' => 'edit_trans_date',
+				'label' => 'Date',
+				'rules' => 'trim|required',
+			),
+			array(
+				'field' => 'edit_trans_amount',
+				'label' => 'Amount',
+				'rules' => 'trim|required',
+			),
+			array(
+				'field' => 'edit_category_id',
+				'label' => 'Category',
+				'rules' => 'trim|required',
+			),
+			array(
+				'field' => 'edit_trans_note',
+				'label' => 'Note',
+				'rules' => 'trim|required',
+			),	
+		));
+		
+		$this->form_validation->set_error_delimiters('<div class="alert alert-success"', '</div>');
+		
+		if($this->form_validation->run() == FALSE) {
+			//if form validation didnt run
+			$this->session->set_flashdata('success', false);
+			redirect('/index.php/user/editExpense/');
+		}
+		else {
+			//load model
+			$this->load->model('Transactions');
+			$trans = new Transactions();
+			
+			//extract values 
+			$trans->user_id = $user_id;
+			$trans->trans_type = 0;
+			
+			$formatDate = date('Y-m-d', strtotime($this->input->post('trans_date')));
+			
+			$trans->trans_date = $formatDate;
+			$trans->trans_amount = $this->input->post('edit_trans_amount');
+			$trans->trans_category = $this->input->post('edit_category_id');
+			$trans->trans_note = $this->input->post('edit_trans_note');
+			
+			//save to db
+			$trans->update();
+			
+			$this->session->set_flashdata('success', true);
+			
+			redirect('/index.php/user/editExpense/');
+		}
+		
+	}//end editExpense
+	
+	/*	=	=	=	=	Income 	=	=	=	=	*/
 	
 	public function addIncome() {
 		//load session data		

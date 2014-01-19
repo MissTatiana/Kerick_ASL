@@ -102,8 +102,9 @@ footer {
 }
 
 .trans {
-	width: 310px;
+	width: 350px;
 	clear: left;
+	height: 60px;
 }
 
 .trans:nth-child(odd)
@@ -111,18 +112,12 @@ footer {
   background-color: #eaeaea;
 }
 
-/*.odd {
-	background: #eaeaea;
-	padding: 5px 10px 5px 10px;
-	width: 200px;
-}*/
-
 .transLeft {
 	float: left;
 }
 
 .note {
-	width: 200px;
+	width: 150px;
 	font-size: 16px;
 	margin: 4px 0 0 0;
 	padding: 0 0 0 10px;
@@ -133,12 +128,21 @@ footer {
 	padding: 3px 0 0 15px;
 }
 
+.transRight {
+	float: left;
+	margin: 0 70px 0 0;
+}
+
 .date {
 	padding: 5px 0 0 0;
 }
 
 .cate {
 	margin: 0 0 0 0;
+}
+
+.icons {
+	padding-top: 5px;
 }
 
 /*	=	=	=	=	Spending	=	=	=	=	*/
@@ -185,11 +189,11 @@ footer {
  * 					Add expense/income/Categories
  =	=	=	=	=	=	=	=	=	=	=	=	=	=	=	=	*/
 
-#add_expense, #add_income {
+#add_expense, #edit_expense, #add_income {
 	margin: 10px 0 0 30px;
 }
 
-#expReset, #incReset {
+#expReset, #editexpReset, #incReset {
 	margin: 0 0 0 100px;
 }
 
@@ -228,4 +232,13 @@ td {
 	width: 150px;
 }
 
-``
+#raptorBtn {
+	margin: 0 0 0 250px;
+}
+
+#raptor {
+	position: absolute;
+	top: 450px;
+	left: 960px;
+	display: none;
+}

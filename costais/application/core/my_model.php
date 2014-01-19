@@ -24,11 +24,11 @@ class My_Model extends CI_Model {
 	
 	//Load from the db
 	public function load($id) {
-		$query = $this->db->get_where($this::DB_TABLE, array (
-			$this::DB_TABLE_PK => $id
-		));
-		$this->populate($query->$row());
-	}//end load
+        $query = $this->db->get_where($this::DB_TABLE, array(
+            $this::DB_TABLE_PK => $id,
+        ));
+        $this->populate($query->row());
+    }//end load
 	
 	//Delete current record
 	public function delete() {

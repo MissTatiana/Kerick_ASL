@@ -26,10 +26,22 @@
             	echo '<p class="date">' . date('m-d-Y', strtotime($trans['trans_date'])) . '</p>';
                 echo '<p class="cate">' . $trans['trans_category'] . '</p>';
             echo '</div>';//transRight
-	    echo '</div>';//trans   
+            
+            echo '<div class="icons">';
+				if($trans['trans_type'] == 0){
+					echo '<a href="/index.php/user/editExpense/' . $trans['trans_id'] . '"><img src="/img/edit.png" /></a>';
+	            }
+				elseif($trans['trans_type'] == 1) {
+					echo '<a href="/index.php/user/editIncome/' . $trans['trans_id'] . '"><img src="/img/edit.png" /></a>';
+				}			
+				echo '<br />';
+				echo '<a href="/index.php/user/delete/' . $trans['trans_id'] . '"><img src="/img/delete.png" /></a>';
+			echo '</div>';//icons
+	    echo '</div>';//trans  
 	}
 	?>
 	</div><!-- transactions -->
+
 	
 </div><!-- userLeft -->
 
@@ -75,6 +87,15 @@
 	echo '</div>';//spending
 	?>
 </div><!-- userRight -->
+
+<input type="submit" id="raptorBtn" value="Raptor" />
+
+<div id="raptor">
+	<img src="/img/raptor.png">
+	
+	<input type="submit" id="stop" value="Hide :)" />	
+	
+</div>
 
 <br />
 <br />

@@ -17,6 +17,7 @@
         <script type="text/javascript" src="/js/vendor/bootstrap.min.js"></script>
         
 		<script type="text/javascript" src="/js/bootstrap-datepicker.js"></script>
+		
 
         <script type="text/javascript" src="/js/main.js"></script>
         
