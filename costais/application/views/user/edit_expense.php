@@ -27,7 +27,7 @@
 				'id' => 'edit_trans_date',
 				'value' => $transactions->trans_date,
  			);
-			echo form_label('Date:', 'edit_trans_date');
+			echo form_label('Edit Date:', 'edit_trans_date');
 			echo form_input($dateData);
 		?>
 		</div>
@@ -40,7 +40,7 @@
 				'id' => 'edit_trans_amount',
 				'value' => $transactions->trans_amount,
 			);
-			echo form_label('Amount:', 'edit_trans_amount');
+			echo form_label('Edit Amount:', 'edit_trans_amount');
 			echo form_input($amountData);
 		?>
 		</div>
@@ -49,7 +49,7 @@
 		<div>
 		<!-- this needs to be a dropdown populated from db -->
 		<?php
-			echo form_label('Category:', 'edit_category_id');
+			echo form_label('Edit Category:', 'edit_category_id');
 			$options = array(
 				$transactions->trans_category = $category->category_name,
 				$category_form_options,
@@ -68,7 +68,7 @@
               'cols' => '10',
               'value' => $transactions->trans_note,
 			);
-			echo form_label('Note:', 'edit_trans_note');
+			echo form_label('Edit Note:', 'edit_trans_note');
 			echo form_textarea($noteData);
 		?>
 		</div>	

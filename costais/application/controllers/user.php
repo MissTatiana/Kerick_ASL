@@ -341,7 +341,7 @@ class User extends CI_Controller {
 			$cats[] = array(
 				$category->category_name,
 				$category->category_type,
-				anchor('/index.php/user/editCategory/' . $category->category_id, 'Edit') . ' | ' .
+				anchor('/user/editCategory/' . $category->category_id, 'Edit') . ' | ' .
 				anchor('/user/deleteCategory/' . $category->category_id, 'Delete'),
 			);
 		}
@@ -382,6 +382,53 @@ class User extends CI_Controller {
 		//load footer
 		$this->load->view('bootstrap/footer');
 	}//end categories
+	
+	public function editCategory($category_id) {
+		$this->load->helper('url');
+		$this->load->helper('form');
+
+		$this->load->view('bootstrap/user_header');
+		
+		$this->load->model('Category');
+		$category = new Category();
+		$category->load($category_id);
+		
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules(array(
+			array(
+				'field' => 'edit_category_name',
+				'label' => 'Edit category name',
+				'rules' => 'trim|required',
+			),
+			array(
+				'field' => 'edit_category_type',
+				'label' => 'Edit type',
+				'rules' => 'trim|required',
+			),
+		));		
+		
+		$this->form_validation->set_error_delimiters('<div class="alert alert-success">', '</div>');
+		
+		if($this->form_validation->run() == FALSE) {
+			$this->load->view('user/edit_category', array(
+				'category' => $category,		
+			));
+		}
+		else {
+			//category model already loaded			
+			
+			$category->category_id = $this->input->post('edit_category_id');
+			$category->category_name = $this->input->post('edit_category_name');
+			$category->category_type = $this->input->post('edit_category_type');
+			
+			$category->update($category_id);
+			
+			redirect('/user/categories');
+		}
+		
+		$this->load->view('bootstrap/footer');
+		
+	}//end editCategory
 	
 	public function deleteCategory($category_id) {
 		$this->load->view('bootstrap/user_header');
