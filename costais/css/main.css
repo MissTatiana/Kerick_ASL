@@ -48,7 +48,8 @@ red color: #a65252;*/
 
 #info {
 	float: left;
-	width: 650px;
+	width: 630px;
+	margin: 0 0 0 20px;
 }
 
 #firstName, #email, #password {

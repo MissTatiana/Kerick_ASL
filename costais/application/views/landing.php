@@ -29,11 +29,12 @@
 <div id="third">
 	
 	<h2>Sign Up!</h2>
+	<div id="info">
 		<h4>It's free!!</h4>
 		<h4>And helpful!</h4>
 		<a href="/index.php/costais/register"><h5>Click here!</h5></a>
-	<div id="info">
-		
+		<br />
+		<br />
 	</div> <!-- info -->
 	
 	<div id="benifits">
