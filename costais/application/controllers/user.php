@@ -169,7 +169,7 @@ class User extends CI_Controller {
 				$trans->trans_note = $this->input->post('edit_trans_note'),			
 			);
 			
-			//$this->db->where('trans_id', $trans->trans_id);
+			$this->db->where('trans_id', $trans_id);
 			$this->db->update('Transactions', $transData);
 			
 			redirect('/user/');
@@ -294,7 +294,7 @@ class User extends CI_Controller {
 				$trans->trans_note = $this->input->post('edit_inc_trans_note'),			
 			);
 			
-			//$this->db->where('trans_id', $trans->trans_id);
+			$this->db->where('trans_id', $trans_id);
 			$this->db->update('Transactions', $transData);
 			
 			redirect('/user/');
@@ -417,11 +417,14 @@ class User extends CI_Controller {
 		else {
 			//category model already loaded			
 			
-			$category->category_id = $this->input->post('edit_category_id');
-			$category->category_name = $this->input->post('edit_category_name');
-			$category->category_type = $this->input->post('edit_category_type');
+			$categoryData = array(
+				$category->category_id = $this->input->post('edit_category_id'),
+				$category->category_name = $this->input->post('edit_category_name'),
+				$category->category_type = $this->input->post('edit_category_type'),
+			);
 			
-			$category->update($category_id);
+			$this->db->where('category_id', $category_id);
+			$this->db->update('Categories', $categoryData);
 			
 			redirect('/user/categories');
 		}
